@@ -6,12 +6,13 @@ package Jframe;
 
 
 
-
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
 /**
@@ -25,8 +26,8 @@ public class ManageBooks extends javax.swing.JFrame {
     /**
      * Creates new form ManageBooks
      */
-    String book_name, author;
-    int book_id, quantity;
+    String bookName, author;
+    int bookId, quantity;
     DefaultTableModel model;
     public ManageBooks() {
         initComponents();
@@ -55,6 +56,42 @@ public class ManageBooks extends javax.swing.JFrame {
         }catch (Exception e ){
             e.printStackTrace();
         }
+    }
+    //add book
+    public boolean addBook(){
+        boolean isAdded = false;
+        bookId = Integer.parseInt(txt_bookId.getText());
+        bookName = txt_bookName.getText();
+        author = txt_authorName.getText();
+        quantity = Integer.parseInt(txt_quantity.getText());
+        
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "insert into book_details values(?,?,?,?)";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1,bookId);
+            pst.setString(2, bookName);
+            pst.setString(3, author);
+            pst.setInt(4,quantity);
+            
+            int rowCount = pst.executeUpdate();
+            if (rowCount>0) {
+                isAdded = true;
+                
+            }else{
+                isAdded = false;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return isAdded;
+    
+    }
+    
+    //clear table
+    public void clearTable(){
+        DefaultTableModel model = (DefaultTableModel) tbl_bookDetails.getModel();
+        model.setRowCount(0);
     }
 
     /**
@@ -188,6 +225,16 @@ public class ManageBooks extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, 90, 40));
 
         jButton2.setBackground(new java.awt.Color(26, 111, 224));
@@ -225,7 +272,7 @@ public class ManageBooks extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_bookDetails);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 640, 180));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 640, 460));
 
         jLabel3.setText("MANAGE BOOKS");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
@@ -266,6 +313,20 @@ public class ManageBooks extends javax.swing.JFrame {
         txt_authorName.setText(model.getValueAt(rowNo, 2).toString());
         txt_quantity.setText(model.getValueAt(rowNo, 3).toString());
     }//GEN-LAST:event_tbl_bookDetailsMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (addBook() == true){
+            JOptionPane.showMessageDialog(this, "Book Added");
+            clearTable();
+            setBookDetailsToTable();
+        }else{
+            JOptionPane.showMessageDialog(this, "Book Addition Failed");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

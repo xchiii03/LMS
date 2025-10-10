@@ -88,6 +88,59 @@ public class ManageBooks extends javax.swing.JFrame {
     
     }
     
+    //UPDATE BOOK
+    public boolean updateBook(){
+        boolean isUpdated = false;
+        bookId = Integer.parseInt(txt_bookId.getText());
+        bookName = txt_bookName.getText();
+        author = txt_authorName.getText();
+        quantity = Integer.parseInt(txt_quantity.getText());
+        
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "update book_details set book_name = ?,author = ?, quantity = ? where book_id = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, bookName);
+            pst.setString(2, author);
+            pst.setInt(3,quantity);
+            pst.setInt(4, bookId);
+            
+            int rowCount = pst.executeUpdate();
+            if(rowCount > 0){
+                isUpdated = true;
+                
+            }else{
+                isUpdated = false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return isUpdated;
+    }
+    
+    //Delete
+    public boolean deleteBook(){
+        boolean isDeleted = false;
+        bookId = Integer.parseInt(txt_bookId.getText());
+        
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "delete from book_details where book_id = ? ";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, bookId);
+            
+            int rowCount = pst.executeUpdate();
+            if (rowCount > 0){
+                isDeleted = true;
+            }else{
+                isDeleted = false;
+            }
+            
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return isDeleted;
+    }
     //clear table
     public void clearTable(){
         DefaultTableModel model = (DefaultTableModel) tbl_bookDetails.getModel();
@@ -240,13 +293,23 @@ public class ManageBooks extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(26, 111, 224));
         jButton2.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Edit");
+        jButton2.setText("Update");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 510, 90, 40));
 
         jButton3.setBackground(new java.awt.Color(26, 111, 224));
         jButton3.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Delete");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 510, 90, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 830));
@@ -327,6 +390,26 @@ public class ManageBooks extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Book Addition Failed");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (updateBook() == true){
+            JOptionPane.showMessageDialog(this, "Book Updated");
+            clearTable();
+            setBookDetailsToTable();
+        }else{
+            JOptionPane.showMessageDialog(this, "Book Updation Failed");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (deleteBook() == true){
+            JOptionPane.showMessageDialog(this, "Book Deleted");
+            clearTable();
+            setBookDetailsToTable();
+        }else{
+            JOptionPane.showMessageDialog(this, "Book Deletion Failed");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

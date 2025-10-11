@@ -121,6 +121,11 @@ public class HomePage extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(220, 240, 244));
         jLabel15.setText("Manage Students");
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+        });
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
@@ -369,6 +374,12 @@ public class HomePage extends javax.swing.JFrame {
         books.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        ManageStudents students = new ManageStudents();
+        students.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel15MouseClicked
 
     /**
      * @param args the command line arguments

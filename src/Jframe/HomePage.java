@@ -4,9 +4,8 @@
  */
 package Jframe;
 
-import com.mysql.cj.xdevapi.Statement;
+
 import java.awt.BorderLayout;
-import java.awt.Color;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -15,6 +14,9 @@ import org.jfree.data.general.DefaultPieDataset;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
+import java.util.Date;
+import java.sql.Statement;
+
 
 /**
  *
@@ -30,6 +32,34 @@ public class HomePage extends javax.swing.JFrame {
     public HomePage() {
         initComponents();
         showPieChart();
+        setDataToCards();
+    }
+    public void setDataToCards(){
+        Statement st = null;
+        ResultSet rs = null;
+        
+        long l = System.currentTimeMillis();
+        Date todaysDate = new Date(l);
+        
+        try {
+            Connection con = DBConnection.getConnection();
+            st = con.createStatement();
+            rs = st.executeQuery("select * from book_details");
+            rs.last();
+            lbl_noOfBooks.setText(Integer.toString(rs.getRow()));
+            
+            rs = st.executeQuery("select * from student_details");
+            rs.last();
+            lbl_noOfStudents.setText(Integer.toString(rs.getRow()));
+            
+            rs = st.executeQuery("select * from issue_book_details where status = '"+"pending"+"'");
+            rs.last();
+            lbl_issuedBooks.setText(Integer.toString(rs.getRow()));
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
     }
     
     public void showPieChart() {
@@ -85,15 +115,12 @@ public class HomePage extends javax.swing.JFrame {
         rSButtonHover6 = new rojeru_san.complementos.RSButtonHover();
         rSButtonHover3 = new rojeru_san.complementos.RSButtonHover();
         jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        lbl = new javax.swing.JPanel();
+        lbl_noOfBooks = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        lbl_noOfStudents = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        lbl_issuedBooks = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
@@ -215,65 +242,34 @@ public class HomePage extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(null);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
-        jPanel5.setForeground(new java.awt.Color(26, 111, 224));
+        lbl.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel5.setText("10");
+        lbl_noOfBooks.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        lbl_noOfBooks.setText("10");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabel5)
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addGap(0, 10, Short.MAX_VALUE))
-        );
-
-        jPanel4.add(jPanel5);
-        jPanel5.setBounds(800, 270, 150, 90);
-
-        jLabel6.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(202, 222, 226));
-        jLabel6.setText("Defaulter List");
-        jPanel4.add(jLabel6);
-        jLabel6.setBounds(800, 240, 100, 20);
-
-        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel8.setText("10");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout lblLayout = new javax.swing.GroupLayout(lbl);
+        lbl.setLayout(lblLayout);
+        lblLayout.setHorizontalGroup(
+            lblLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lblLayout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addComponent(jLabel8)
+                .addComponent(lbl_noOfBooks)
                 .addContainerGap(48, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jLabel8)
+        lblLayout.setVerticalGroup(
+            lblLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lblLayout.createSequentialGroup()
+                .addComponent(lbl_noOfBooks)
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel6);
-        jPanel6.setBounds(610, 140, 150, 90);
+        jPanel4.add(lbl);
+        lbl.setBounds(610, 140, 150, 90);
 
         jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel12.setText("10");
+        lbl_noOfStudents.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        lbl_noOfStudents.setText("10");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -281,13 +277,13 @@ public class HomePage extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addComponent(jLabel12)
+                .addComponent(lbl_noOfStudents)
                 .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jLabel12)
+                .addComponent(lbl_noOfStudents)
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
@@ -296,8 +292,8 @@ public class HomePage extends javax.swing.JFrame {
 
         jPanel11.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel14.setText("10");
+        lbl_issuedBooks.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        lbl_issuedBooks.setText("10");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -305,13 +301,13 @@ public class HomePage extends javax.swing.JFrame {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(jLabel14)
+                .addComponent(lbl_issuedBooks)
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addComponent(jLabel14)
+                .addComponent(lbl_issuedBooks)
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
@@ -449,25 +445,22 @@ public class HomePage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel lbl;
+    private javax.swing.JLabel lbl_issuedBooks;
+    private javax.swing.JLabel lbl_noOfBooks;
+    private javax.swing.JLabel lbl_noOfStudents;
     private javax.swing.JPanel panelPieChart;
     private rojeru_san.complementos.RSButtonHover rSButtonHover1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover2;

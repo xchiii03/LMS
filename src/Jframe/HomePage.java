@@ -14,6 +14,7 @@ import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
 import java.sql.ResultSet;
 import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -404,7 +405,20 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_rSButtonHover6MouseClicked
 
     private void rSButtonHover3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonHover3MouseClicked
-        
+        int confirm = JOptionPane.showConfirmDialog(this, 
+        "Are you sure you want to logout?", 
+        "Logout Confirmation", 
+        JOptionPane.YES_NO_OPTION);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+        // Open login first
+            LoginPage login = new LoginPage();
+            login.setVisible(true);
+            login.setLocationRelativeTo(null);
+
+        // Then close this window
+            this.dispose();
+    }
     }//GEN-LAST:event_rSButtonHover3MouseClicked
 
     /**

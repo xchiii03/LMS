@@ -67,7 +67,7 @@ public class ManageBooks extends javax.swing.JFrame {
         
         try {
             Connection con = DBConnection.getConnection();
-            String sql = "insert into book_details values(?,?,?,?)";
+            String sql = "INSERT INTO book_details (book_id, book_name, author, quantity) VALUES (?, ?, ?, ?)";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setInt(1,bookId);
             pst.setString(2, bookName);

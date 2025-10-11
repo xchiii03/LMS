@@ -158,6 +158,9 @@ public class ManageStudents extends javax.swing.JFrame {
 
         rSButtonMetroBeanInfo1 = new rojerusan.RSButtonMetroBeanInfo();
         rSButtonMetroBeanInfo2 = new rojerusan.RSButtonMetroBeanInfo();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_bookDetails = new rojeru_san.complementos.RSTableMetro();
         jPanel1 = new javax.swing.JPanel();
         txt_studentId = new app.bolivia.swing.JCTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -166,22 +169,49 @@ public class ManageStudents extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         combo_branch = new javax.swing.JComboBox<>();
         combo_courseName = new javax.swing.JComboBox<>();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_bookDetails = new rojeru_san.complementos.RSTableMetro();
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 728));
+        setMinimumSize(new java.awt.Dimension(1280, 728));
+        setPreferredSize(new java.awt.Dimension(1280, 728));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(76, 100, 107));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setMaximumSize(new java.awt.Dimension(1280, 728));
+        jPanel3.setMinimumSize(new java.awt.Dimension(1280, 728));
+        jPanel3.setPreferredSize(new java.awt.Dimension(1280, 728));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tbl_bookDetails.setBackground(new java.awt.Color(27, 37, 40));
+        tbl_bookDetails.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "STUDENT ID", "NAME", "DEPARTMENT", "PROGRAM"
+            }
+        ));
+        tbl_bookDetails.setColorBackgoundHead(new java.awt.Color(95, 179, 200));
+        tbl_bookDetails.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tbl_bookDetails.setColorForegroundHead(new java.awt.Color(27, 37, 40));
+        tbl_bookDetails.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_bookDetailsMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbl_bookDetails);
+
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, 640, 460));
+
+        jPanel1.setBackground(new java.awt.Color(27, 37, 40));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txt_studentId.setBackground(new java.awt.Color(92, 112, 117));
@@ -224,12 +254,13 @@ public class ManageStudents extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(26, 111, 224));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("BACK");
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+        jButton4.setBackground(new java.awt.Color(95, 179, 200));
+        jButton4.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(27, 37, 40));
+        jButton4.setText("Back");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -237,25 +268,20 @@ public class ManageStudents extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel2)
-                .addContainerGap(41, Short.MAX_VALUE))
+            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel2)
-                .addContainerGap(15, Short.MAX_VALUE))
+            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 50));
 
-        jButton1.setBackground(new java.awt.Color(26, 111, 224));
+        jButton1.setBackground(new java.awt.Color(95, 179, 200));
         jButton1.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(new java.awt.Color(27, 37, 40));
         jButton1.setText("Add");
+        jButton1.setToolTipText("");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -268,10 +294,11 @@ public class ManageStudents extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, 90, 40));
 
-        jButton2.setBackground(new java.awt.Color(26, 111, 224));
+        jButton2.setBackground(new java.awt.Color(95, 179, 200));
         jButton2.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setForeground(new java.awt.Color(27, 37, 40));
         jButton2.setText("Update");
+        jButton2.setToolTipText("");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -279,10 +306,11 @@ public class ManageStudents extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 510, 90, 40));
 
-        jButton3.setBackground(new java.awt.Color(26, 111, 224));
+        jButton3.setBackground(new java.awt.Color(95, 179, 200));
         jButton3.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setForeground(new java.awt.Color(27, 37, 40));
         jButton3.setText("Delete");
+        jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -290,7 +318,9 @@ public class ManageStudents extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 510, 90, 40));
 
+        combo_branch.setBackground(new java.awt.Color(92, 112, 117));
         combo_branch.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        combo_branch.setForeground(new java.awt.Color(202, 222, 226));
         combo_branch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CPE", "IE", "ECE", "IT", " " }));
         combo_branch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,7 +329,9 @@ public class ManageStudents extends javax.swing.JFrame {
         });
         jPanel1.add(combo_branch, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 290, 40));
 
+        combo_courseName.setBackground(new java.awt.Color(92, 112, 117));
         combo_courseName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        combo_courseName.setForeground(new java.awt.Color(202, 222, 226));
         combo_courseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COE", "COED", "CBAA" }));
         combo_courseName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -308,55 +340,29 @@ public class ManageStudents extends javax.swing.JFrame {
         });
         jPanel1.add(combo_courseName, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 290, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 830));
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tbl_bookDetails.setBackground(new java.awt.Color(76, 100, 107));
-        tbl_bookDetails.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "STUDENT ID", "NAME", "DEPARTMENT", "PROGRAM"
-            }
-        ));
-        tbl_bookDetails.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
-        tbl_bookDetails.setColorForegroundHead(new java.awt.Color(220, 240, 244));
-        tbl_bookDetails.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_bookDetailsMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tbl_bookDetails);
-
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 640, 460));
-
-        jLabel3.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 34)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(119, 224, 250));
         jLabel3.setText("MANAGE STUDENTS");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Bg_Dashboard.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-840, 0, 1540, 830));
+        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 728));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 1150, 830));
+        jLabel4.setBackground(new java.awt.Color(95, 179, 200));
+        jLabel4.setForeground(new java.awt.Color(27, 37, 40));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Bg_Dashboard.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        jLabel4.setToolTipText("");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 730));
 
-        setSize(new java.awt.Dimension(1294, 776));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 728));
+
+        setSize(new java.awt.Dimension(1294, 737));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_studentIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_studentIdFocusLost
 
     }//GEN-LAST:event_txt_studentIdFocusLost
-
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        HomePage home = new HomePage();
-        home.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jLabel2MouseClicked
 
     private void tbl_bookDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_bookDetailsMouseClicked
         int rowNo = tbl_bookDetails.getSelectedRow();
@@ -409,6 +415,13 @@ public class ManageStudents extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_courseNameActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        HomePage home = new HomePage();
+        home.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -440,9 +453,9 @@ public class ManageStudents extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

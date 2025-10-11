@@ -160,6 +160,7 @@ public class ManageBooks extends javax.swing.JFrame {
 
         rSButtonMetroBeanInfo1 = new rojerusan.RSButtonMetroBeanInfo();
         rSButtonMetroBeanInfo2 = new rojerusan.RSButtonMetroBeanInfo();
+        jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         txt_bookId = new app.bolivia.swing.JCTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -173,19 +174,26 @@ public class ManageBooks extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_bookDetails = new rojeru_san.complementos.RSTableMetro();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 728));
+        setMinimumSize(new java.awt.Dimension(1280, 728));
+        setPreferredSize(new java.awt.Dimension(1280, 728));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(76, 100, 107));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setMaximumSize(new java.awt.Dimension(1280, 728));
+        jPanel3.setMinimumSize(new java.awt.Dimension(1280, 728));
+        jPanel3.setPreferredSize(new java.awt.Dimension(1280, 728));
+        jPanel3.setLayout(null);
+
+        jPanel1.setBackground(new java.awt.Color(27, 37, 40));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txt_bookId.setBackground(new java.awt.Color(92, 112, 117));
@@ -247,9 +255,9 @@ public class ManageBooks extends javax.swing.JFrame {
         txt_quantity.setPlaceholder("Quantity...");
         jPanel1.add(txt_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 290, 40));
 
-        jButton1.setBackground(new java.awt.Color(26, 111, 224));
+        jButton1.setBackground(new java.awt.Color(95, 179, 200));
         jButton1.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(new java.awt.Color(27, 37, 40));
         jButton1.setText("Add");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -263,9 +271,9 @@ public class ManageBooks extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, 90, 40));
 
-        jButton2.setBackground(new java.awt.Color(26, 111, 224));
+        jButton2.setBackground(new java.awt.Color(95, 179, 200));
         jButton2.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setForeground(new java.awt.Color(27, 37, 40));
         jButton2.setText("Update");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,9 +282,9 @@ public class ManageBooks extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 510, 90, 40));
 
-        jButton3.setBackground(new java.awt.Color(26, 111, 224));
+        jButton3.setBackground(new java.awt.Color(95, 179, 200));
         jButton3.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setForeground(new java.awt.Color(27, 37, 40));
         jButton3.setText("Delete");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,12 +296,13 @@ public class ManageBooks extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(26, 111, 224));
         jPanel5.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("BACK");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+        jButton4.setBackground(new java.awt.Color(95, 179, 200));
+        jButton4.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(27, 37, 40));
+        jButton4.setText("Back");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -301,27 +310,24 @@ public class ManageBooks extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel4)
-                .addContainerGap(41, Short.MAX_VALUE))
+            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel4)
-                .addContainerGap(15, Short.MAX_VALUE))
+            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 830));
+        jLabel3.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 34)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(119, 224, 250));
+        jLabel3.setText("MANAGE BOOKS");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 260, 40));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.add(jPanel1);
+        jPanel1.setBounds(0, 0, 560, 728);
 
-        tbl_bookDetails.setBackground(new java.awt.Color(76, 100, 107));
+        tbl_bookDetails.setBackground(new java.awt.Color(38, 52, 56));
         tbl_bookDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -330,8 +336,9 @@ public class ManageBooks extends javax.swing.JFrame {
                 "BOOK ID", "TITLE", "AUTHOR", "QUANTITY"
             }
         ));
+        tbl_bookDetails.setColorBackgoundHead(new java.awt.Color(95, 179, 200));
         tbl_bookDetails.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
-        tbl_bookDetails.setColorForegroundHead(new java.awt.Color(220, 240, 244));
+        tbl_bookDetails.setColorForegroundHead(new java.awt.Color(27, 37, 40));
         tbl_bookDetails.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_bookDetailsMouseClicked(evt);
@@ -339,19 +346,8 @@ public class ManageBooks extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_bookDetails);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 640, 460));
-
-        jLabel3.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(220, 240, 244));
-        jLabel3.setText("MANAGE BOOKS");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 160, 40));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Bg_Dashboard.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-590, 0, 1540, 830));
-
-        jPanel4.setBackground(new java.awt.Color(26, 111, 224));
-        jPanel4.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(jScrollPane1);
+        jScrollPane1.setBounds(600, 120, 640, 460);
 
         jLabel2.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -361,29 +357,19 @@ public class ManageBooks extends javax.swing.JFrame {
                 jLabel2MouseClicked(evt);
             }
         });
+        jPanel3.add(jLabel2);
+        jLabel2.setBounds(0, 0, 40, 19);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel2)
-                .addContainerGap(41, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel2)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Bg_Dashboard.png"))); // NOI18N
+        jLabel1.setMaximumSize(new java.awt.Dimension(1280, 728));
+        jLabel1.setMinimumSize(new java.awt.Dimension(1280, 728));
+        jLabel1.setPreferredSize(new java.awt.Dimension(1280, 728));
+        jPanel3.add(jLabel1);
+        jLabel1.setBounds(0, 0, 1280, 728);
 
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-570, -70, -1, -1));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 728));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 1150, 830));
-
-        setSize(new java.awt.Dimension(1548, 832));
+        setSize(new java.awt.Dimension(1295, 737));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -448,11 +434,11 @@ public class ManageBooks extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         HomePage home = new HomePage();
         home.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -483,17 +469,16 @@ public class ManageBooks extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private rojerusan.RSButtonMetroBeanInfo rSButtonMetroBeanInfo1;

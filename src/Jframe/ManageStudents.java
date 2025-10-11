@@ -49,7 +49,7 @@ public class ManageStudents extends javax.swing.JFrame {
                 String program =  rs.getString("program");
                 
                 Object [] obj = {StudentId,StudentName,department,program};
-                model = (DefaultTableModel)tbl_studentDetails.getModel();
+                model = (DefaultTableModel)tbl_bookDetails.getModel();
                 model.addRow(obj);
                 
             }
@@ -62,8 +62,8 @@ public class ManageStudents extends javax.swing.JFrame {
         boolean isAdded = false;
         studentId = Integer.parseInt(txt_studentId.getText());
         studentName = txt_studentName.getText();
-        department = combo_Department.getSelectedItem().toString();
-        program = combo_Program.getSelectedItem().toString();
+        department = combo_courseName.getSelectedItem().toString();
+        program = combo_branch.getSelectedItem().toString();
         
         try {
             Connection con = DBConnection.getConnection();
@@ -93,8 +93,8 @@ public class ManageStudents extends javax.swing.JFrame {
         boolean isUpdated = false;
         studentId = Integer.parseInt(txt_studentId.getText());
         studentName = txt_studentName.getText();
-        department = combo_Department.getSelectedItem().toString();
-        program = combo_Program.getSelectedItem().toString();
+        department = combo_courseName.getSelectedItem().toString();
+        program = combo_branch.getSelectedItem().toString();
         
         try {
             Connection con = DBConnection.getConnection();
@@ -143,7 +143,7 @@ public class ManageStudents extends javax.swing.JFrame {
     }
     //clear table
     public void clearTable(){
-        DefaultTableModel model = (DefaultTableModel) tbl_studentDetails.getModel();
+        DefaultTableModel model = (DefaultTableModel) tbl_bookDetails.getModel();
         model.setRowCount(0);
     }
 
@@ -170,11 +170,11 @@ public class ManageStudents extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        combo_Program = new javax.swing.JComboBox<>();
-        combo_Department = new javax.swing.JComboBox<>();
+        combo_branch = new javax.swing.JComboBox<>();
+        combo_courseName = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_studentDetails = new rojeru_san.complementos.RSTableMetro();
+        tbl_bookDetails = new rojeru_san.complementos.RSTableMetro();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -290,31 +290,31 @@ public class ManageStudents extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 510, 90, 40));
 
-        combo_Program.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        combo_Program.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CPE", "IE", "ECE", "IT", " " }));
-        combo_Program.addActionListener(new java.awt.event.ActionListener() {
+        combo_branch.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        combo_branch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CPE", "IE", "ECE", "IT", " " }));
+        combo_branch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combo_ProgramActionPerformed(evt);
+                combo_branchActionPerformed(evt);
             }
         });
-        jPanel1.add(combo_Program, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 290, 40));
+        jPanel1.add(combo_branch, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 290, 40));
 
-        combo_Department.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        combo_Department.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COE", "COED", "CBAA" }));
-        combo_Department.addActionListener(new java.awt.event.ActionListener() {
+        combo_courseName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        combo_courseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COE", "COED", "CBAA" }));
+        combo_courseName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combo_DepartmentActionPerformed(evt);
+                combo_courseNameActionPerformed(evt);
             }
         });
-        jPanel1.add(combo_Department, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 290, 40));
+        jPanel1.add(combo_courseName, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 290, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 830));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tbl_studentDetails.setBackground(new java.awt.Color(76, 100, 107));
-        tbl_studentDetails.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_bookDetails.setBackground(new java.awt.Color(76, 100, 107));
+        tbl_bookDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -322,14 +322,14 @@ public class ManageStudents extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tbl_studentDetails.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
-        tbl_studentDetails.setColorForegroundHead(new java.awt.Color(220, 240, 244));
-        tbl_studentDetails.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbl_bookDetails.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tbl_bookDetails.setColorForegroundHead(new java.awt.Color(220, 240, 244));
+        tbl_bookDetails.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_studentDetailsMouseClicked(evt);
+                tbl_bookDetailsMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tbl_studentDetails);
+        jScrollPane1.setViewportView(tbl_bookDetails);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 640, 460));
 
@@ -357,14 +357,14 @@ public class ManageStudents extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    private void tbl_studentDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_studentDetailsMouseClicked
-        int rowNo = tbl_studentDetails.getSelectedRow();
-        TableModel model = tbl_studentDetails.getModel();
+    private void tbl_bookDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_bookDetailsMouseClicked
+        int rowNo = tbl_bookDetails.getSelectedRow();
+        TableModel model = tbl_bookDetails.getModel();
         txt_studentId.setText(model.getValueAt(rowNo, 0).toString());
         txt_studentName.setText(model.getValueAt(rowNo, 1).toString());
-        combo_Department.setSelectedItem(model.getValueAt(rowNo, 2).toString());
-        combo_Program.setSelectedItem(model.getValueAt(rowNo, 3).toString());
-    }//GEN-LAST:event_tbl_studentDetailsMouseClicked
+        combo_courseName.setSelectedItem(model.getValueAt(rowNo, 2).toString());
+        combo_branch.setSelectedItem(model.getValueAt(rowNo, 3).toString());
+    }//GEN-LAST:event_tbl_bookDetailsMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
@@ -400,13 +400,13 @@ public class ManageStudents extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void combo_ProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_ProgramActionPerformed
+    private void combo_branchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_branchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combo_ProgramActionPerformed
+    }//GEN-LAST:event_combo_branchActionPerformed
 
-    private void combo_DepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_DepartmentActionPerformed
+    private void combo_courseNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_courseNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combo_DepartmentActionPerformed
+    }//GEN-LAST:event_combo_courseNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -434,8 +434,8 @@ public class ManageStudents extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> combo_Department;
-    private javax.swing.JComboBox<String> combo_Program;
+    private javax.swing.JComboBox<String> combo_branch;
+    private javax.swing.JComboBox<String> combo_courseName;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -452,7 +452,7 @@ public class ManageStudents extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private rojerusan.RSButtonMetroBeanInfo rSButtonMetroBeanInfo1;
     private rojerusan.RSButtonMetroBeanInfo rSButtonMetroBeanInfo2;
-    private rojeru_san.complementos.RSTableMetro tbl_studentDetails;
+    private rojeru_san.complementos.RSTableMetro tbl_bookDetails;
     private app.bolivia.swing.JCTextField txt_studentId;
     private app.bolivia.swing.JCTextField txt_studentName;
     // End of variables declaration//GEN-END:variables

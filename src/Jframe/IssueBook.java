@@ -216,9 +216,7 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 728));
         setMinimumSize(new java.awt.Dimension(1280, 728));
-        setPreferredSize(new java.awt.Dimension(1280, 728));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panel_main.setBackground(new java.awt.Color(255, 255, 255));
@@ -234,6 +232,7 @@ public class IssueBook extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(95, 179, 200));
         jButton2.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(27, 37, 40));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/icons8_Exit_edited.png"))); // NOI18N
         jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

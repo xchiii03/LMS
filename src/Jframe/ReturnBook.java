@@ -156,9 +156,7 @@ public class ReturnBook extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 728));
         setMinimumSize(new java.awt.Dimension(1280, 728));
-        setPreferredSize(new java.awt.Dimension(1280, 728));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panel_main.setBackground(new java.awt.Color(255, 255, 255));
@@ -238,6 +236,7 @@ public class ReturnBook extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(95, 179, 200));
         jButton3.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(27, 37, 40));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/icons8_Exit_edited.png"))); // NOI18N
         jButton3.setText("Back");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

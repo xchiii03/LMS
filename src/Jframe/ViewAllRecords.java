@@ -108,30 +108,36 @@ public void setIssueBookDetailsToTable(){
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        lbl_search = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         txt_search = new app.bolivia.swing.JCTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_issueBookDetails = new rojeru_san.complementos.RSTableMetro();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1280, 728));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1280, 728));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1280, 728));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1280, 728));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel2.setBackground(new java.awt.Color(27, 37, 40));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setBackground(new java.awt.Color(26, 111, 224));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("BACK");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+        jButton1.setBackground(new java.awt.Color(95, 179, 200));
+        jButton1.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(27, 37, 40));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/icons8_Exit_edited.png"))); // NOI18N
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -139,29 +145,19 @@ public void setIssueBookDetailsToTable(){
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel3)
-                .addContainerGap(41, Short.MAX_VALUE))
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel3)
-                .addContainerGap(15, Short.MAX_VALUE))
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 50));
 
-        lbl_search.setText("SEARCH");
-        lbl_search.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbl_searchMouseClicked(evt);
-            }
-        });
-        jPanel2.add(lbl_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 130, 53, -1));
-
+        txt_search.setBackground(new java.awt.Color(92, 112, 117));
+        txt_search.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_search.setForeground(new java.awt.Color(202, 222, 226));
+        txt_search.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txt_search.setPlaceholder("Search...");
         txt_search.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -173,13 +169,21 @@ public void setIssueBookDetailsToTable(){
                 txt_searchActionPerformed(evt);
             }
         });
-        jPanel2.add(txt_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 120, -1, -1));
+        txt_search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_searchKeyPressed(evt);
+            }
+        });
+        jPanel2.add(txt_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 90, 220, 40));
 
+        jLabel2.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 34)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(119, 224, 250));
         jLabel2.setText("VIEW ALL RECORDS");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 117, 36));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, 310, 36));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 160));
 
+        tbl_issueBookDetails.setBackground(new java.awt.Color(38, 52, 56));
         tbl_issueBookDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -188,6 +192,16 @@ public void setIssueBookDetailsToTable(){
                 "ID", "BOOK NAME", "STUDENT NAME", "ISSUE DATE", "DUE DATE", "STATUS"
             }
         ));
+        tbl_issueBookDetails.setColorBackgoundHead(new java.awt.Color(95, 179, 200));
+        tbl_issueBookDetails.setColorBordeFilas(new java.awt.Color(27, 37, 40));
+        tbl_issueBookDetails.setColorBordeHead(new java.awt.Color(27, 37, 40));
+        tbl_issueBookDetails.setColorFilasBackgound1(new java.awt.Color(220, 240, 244));
+        tbl_issueBookDetails.setColorFilasBackgound2(new java.awt.Color(220, 240, 244));
+        tbl_issueBookDetails.setColorFilasForeground1(new java.awt.Color(95, 179, 200));
+        tbl_issueBookDetails.setColorFilasForeground2(new java.awt.Color(95, 179, 200));
+        tbl_issueBookDetails.setColorForegroundHead(new java.awt.Color(27, 37, 40));
+        tbl_issueBookDetails.setColorSelBackgound(new java.awt.Color(95, 179, 200));
+        tbl_issueBookDetails.setColorSelForeground(new java.awt.Color(220, 240, 244));
         tbl_issueBookDetails.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_issueBookDetailsMouseClicked(evt);
@@ -195,7 +209,10 @@ public void setIssueBookDetailsToTable(){
         });
         jScrollPane1.setViewportView(tbl_issueBookDetails);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 1150, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 1150, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/bg2_used.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 728));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,10 +222,10 @@ public void setIssueBookDetailsToTable(){
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setSize(new java.awt.Dimension(1294, 776));
+        setSize(new java.awt.Dimension(1296, 736));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -216,25 +233,25 @@ public void setIssueBookDetailsToTable(){
         
     }//GEN-LAST:event_tbl_issueBookDetailsMouseClicked
 
-    private void lbl_searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_searchMouseClicked
-        String selectedStatus = txt_search.getText().trim(); // read user input
-        clearTable(); // clear current data
-        search(selectedStatus);
-    }//GEN-LAST:event_lbl_searchMouseClicked
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        HomePage home = new HomePage();
-        home.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jLabel3MouseClicked
-
     private void txt_searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_searchMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_searchMouseClicked
 
     private void txt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchActionPerformed
-        // TODO add your handling code here:
+        String selectedStatus = txt_search.getText().trim(); // read user input
+        clearTable(); // clear current data
+        search(selectedStatus);
     }//GEN-LAST:event_txt_searchActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        HomePage home = new HomePage();
+        home.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txt_searchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_searchKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_searchKeyPressed
 
     /**
      * @param args the command line arguments
@@ -262,13 +279,13 @@ public void setIssueBookDetailsToTable(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbl_search;
     private rojeru_san.complementos.RSTableMetro tbl_issueBookDetails;
     private app.bolivia.swing.JCTextField txt_search;
     // End of variables declaration//GEN-END:variables

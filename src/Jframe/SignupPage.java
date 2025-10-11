@@ -132,50 +132,50 @@ public class SignupPage extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 728));
+        setMinimumSize(new java.awt.Dimension(1280, 728));
+        setPreferredSize(new java.awt.Dimension(1280, 728));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1280, 728));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1280, 728));
         jPanel1.setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setBackground(new java.awt.Color(27, 37, 40));
+        jPanel2.setMinimumSize(new java.awt.Dimension(550, 728));
+        jPanel2.setPreferredSize(new java.awt.Dimension(550, 728));
 
         jLabel2.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(220, 240, 244));
+        jLabel2.setForeground(new java.awt.Color(119, 224, 250));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("SIGNUP");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 130, 30));
 
         jLabel3.setFont(new java.awt.Font("Franklin Gothic Book", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(202, 222, 226));
         jLabel3.setText("Sign up to continue");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(202, 222, 226));
         jLabel4.setText("Contact Number");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, -1, -1));
 
         txt_contact.setBackground(new java.awt.Color(92, 112, 117));
         txt_contact.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txt_contact.setForeground(new java.awt.Color(202, 222, 226));
         txt_contact.setToolTipText("");
         txt_contact.setPlaceholder("Enter your Contact Number");
-        jPanel2.add(txt_contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 290, 40));
 
         jLabel5.setForeground(new java.awt.Color(202, 222, 226));
         jLabel5.setText("Username");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
 
         jLabel6.setForeground(new java.awt.Color(202, 222, 226));
         jLabel6.setText("Password");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, -1));
 
         jLabel7.setForeground(new java.awt.Color(202, 222, 226));
         jLabel7.setText("Email");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, -1, -1));
 
         txt_username.setBackground(new java.awt.Color(92, 112, 117));
         txt_username.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -186,40 +186,34 @@ public class SignupPage extends javax.swing.JFrame {
                 txt_usernameFocusLost(evt);
             }
         });
-        jPanel2.add(txt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 290, 40));
 
         txt_password.setBackground(new java.awt.Color(92, 112, 117));
         txt_password.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txt_password.setForeground(new java.awt.Color(202, 222, 226));
         txt_password.setPlaceholder("Enter your Password");
-        jPanel2.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 290, 40));
 
         txt_email.setBackground(new java.awt.Color(92, 112, 117));
         txt_email.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txt_email.setForeground(new java.awt.Color(202, 222, 226));
         txt_email.setPlaceholder("Enter your Email");
-        jPanel2.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 290, 40));
 
-        rSMaterialButtonCircle2.setBackground(new java.awt.Color(26, 111, 224));
+        rSMaterialButtonCircle2.setBackground(new java.awt.Color(95, 179, 200));
+        rSMaterialButtonCircle2.setForeground(new java.awt.Color(27, 37, 40));
         rSMaterialButtonCircle2.setText("SIGN UP");
         rSMaterialButtonCircle2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rSMaterialButtonCircle2ActionPerformed(evt);
             }
         });
-        jPanel2.add(rSMaterialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 510, 200, 66));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(220, 240, 244));
+        jLabel1.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 40)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(119, 224, 250));
         jLabel1.setText("exus LMS");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, -1, -1));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 630, 540, 10));
 
         jLabel9.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(202, 222, 226));
         jLabel9.setText("Already have an account?");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 610, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(27, 119, 242));
@@ -229,19 +223,112 @@ public class SignupPage extends javax.swing.JFrame {
                 jLabel10MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 610, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Logo_Login.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(txt_contact, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(rSMaterialButtonCircle2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(jLabel9)
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel10))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addComponent(jLabel8)
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel1)))
+                .addGap(70, 70, 70))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel1)
+                        .addGap(12, 12, 12))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(19, 19, 19)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel3)
+                .addGap(11, 11, 11)
+                .addComponent(jLabel5)
+                .addGap(4, 4, 4)
+                .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel6)
+                .addGap(4, 4, 4)
+                .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel7)
+                .addGap(4, 4, 4)
+                .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel4)
+                .addGap(4, 4, 4)
+                .addComponent(txt_contact, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(rSMaterialButtonCircle2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)))
+        );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(790, 10, 570, 830);
+        jPanel2.setBounds(800, 0, 480, 728);
 
-        jLabel8.setBackground(new java.awt.Color(102, 255, 102));
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Bg.png"))); // NOI18N
-        jPanel1.add(jLabel8);
-        jLabel8.setBounds(-730, 0, 1520, 1020);
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Bg.png"))); // NOI18N
+        jLabel11.setPreferredSize(new java.awt.Dimension(1280, 728));
+        jPanel1.add(jLabel11);
+        jLabel11.setBounds(0, 0, 1280, 728);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1520, 830));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 728));
 
-        setSize(new java.awt.Dimension(1294, 776));
+        setSize(new java.awt.Dimension(1296, 738));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -296,6 +383,7 @@ public class SignupPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -4,6 +4,7 @@
  */
 package Jframe;
 
+import com.mysql.cj.xdevapi.Statement;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import org.jfree.chart.ChartFactory;
@@ -11,6 +12,8 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
+import java.sql.ResultSet;
+import java.sql.Connection;
 
 /**
  *
@@ -27,35 +30,38 @@ public class HomePage extends javax.swing.JFrame {
         initComponents();
         showPieChart();
     }
-    public void showPieChart(){
-        
-        //create dataset
-      DefaultPieDataset barDataset = new DefaultPieDataset( );
-      barDataset.setValue( "IPhone 5s" , new Double( 20 ) );  
-      barDataset.setValue( "SamSung Grand" , new Double( 20 ) );   
-      barDataset.setValue( "MotoG" , new Double( 40 ) );    
-      barDataset.setValue( "Nokia Lumia" , new Double( 10 ) );  
-      
-      //create chart
-       JFreeChart piechart = ChartFactory.createPieChart("mobile sales",barDataset, false,true,false);//explain
-      
-        PiePlot piePlot =(PiePlot) piechart.getPlot();
-      
-       //changing pie chart blocks colors
-       piePlot.setSectionPaint("IPhone 5s", new Color(255,255,102));
-        piePlot.setSectionPaint("SamSung Grand", new Color(102,255,102));
-        piePlot.setSectionPaint("MotoG", new Color(255,102,153));
-        piePlot.setSectionPaint("Nokia Lumia", new Color(0,204,204));
-      
-       
-        piePlot.setBackgroundPaint(Color.white);
-        
-        //create chartPanel to display chart(graph)
+    
+    public void showPieChart() {
+
+    // create dataset
+    DefaultPieDataset barDataset = new DefaultPieDataset();
+
+    try {
+        Connection con = DBConnection.getConnection();
+        String sql = "SELECT book_name, COUNT(*) AS issue_count FROM issue_book_details GROUP BY book_id";
+        var st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+            barDataset.setValue(rs.getString("book_name"), rs.getDouble("issue_count"));
+        }
+
+        // ✅ Create the chart
+        JFreeChart piechart = ChartFactory.createPieChart("Book Issue Details", barDataset, true, true, false);
+
+        // ✅ Create panel to display chart
+        PiePlot piePlot = (PiePlot) piechart.getPlot();
         ChartPanel barChartPanel = new ChartPanel(piechart);
         panelPieChart.removeAll();
         panelPieChart.add(barChartPanel, BorderLayout.CENTER);
         panelPieChart.validate();
+
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
+      
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,16 +75,14 @@ public class HomePage extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        rSButtonHover1 = new rojeru_san.complementos.RSButtonHover();
+        rSButtonHover2 = new rojeru_san.complementos.RSButtonHover();
+        rSButtonHover4 = new rojeru_san.complementos.RSButtonHover();
+        rSButtonHover5 = new rojeru_san.complementos.RSButtonHover();
+        rSButtonHover6 = new rojeru_san.complementos.RSButtonHover();
+        rSButtonHover3 = new rojeru_san.complementos.RSButtonHover();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -91,11 +95,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        rSTableMetro1 = new rojeru_san.complementos.RSTableMetro();
         jLabel23 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        rSTableMetro2 = new rojeru_san.complementos.RSTableMetro();
         panelPieChart = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -118,61 +118,6 @@ public class HomePage extends javax.swing.JFrame {
         jLabel10.setText("LMS Dashboard");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
 
-        jLabel15.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(220, 240, 244));
-        jLabel15.setText("Manage Students");
-        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel15MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(220, 240, 244));
-        jLabel11.setText("Manage Books");
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
-
-        jLabel16.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(220, 240, 244));
-        jLabel16.setText("Issue Book");
-        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel16MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, -1, -1));
-
-        jLabel17.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(220, 240, 244));
-        jLabel17.setText("Return Book");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, -1, -1));
-
-        jLabel18.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(220, 240, 244));
-        jLabel18.setText("View Records");
-        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, -1, -1));
-
-        jLabel19.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(220, 240, 244));
-        jLabel19.setText("View Issued Books");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, -1, -1));
-
-        jLabel20.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(220, 240, 244));
-        jLabel20.setText("Defaulter List");
-        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, -1, -1));
-
-        jLabel13.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(96, 158, 242));
-        jLabel13.setText("Log out");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 600, -1, -1));
-
         jLabel3.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(220, 240, 244));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Home_26px_2.png"))); // NOI18N
@@ -183,6 +128,86 @@ public class HomePage extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(220, 240, 244));
         jLabel7.setText("Features:");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, 20));
+
+        rSButtonHover1.setBackground(new java.awt.Color(76, 100, 107));
+        rSButtonHover1.setForeground(new java.awt.Color(220, 240, 244));
+        rSButtonHover1.setText("Manage Books");
+        rSButtonHover1.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
+        rSButtonHover1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover1MouseClicked(evt);
+            }
+        });
+        rSButtonHover1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonHover1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 270, -1));
+
+        rSButtonHover2.setBackground(new java.awt.Color(76, 100, 107));
+        rSButtonHover2.setText("Manage Students");
+        rSButtonHover2.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
+        rSButtonHover2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover2MouseClicked(evt);
+            }
+        });
+        jPanel2.add(rSButtonHover2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 270, -1));
+
+        rSButtonHover4.setBackground(new java.awt.Color(76, 100, 107));
+        rSButtonHover4.setForeground(new java.awt.Color(220, 240, 244));
+        rSButtonHover4.setText("Issue Book");
+        rSButtonHover4.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
+        rSButtonHover4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover4MouseClicked(evt);
+            }
+        });
+        rSButtonHover4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonHover4ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(rSButtonHover4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 270, -1));
+
+        rSButtonHover5.setBackground(new java.awt.Color(76, 100, 107));
+        rSButtonHover5.setForeground(new java.awt.Color(220, 240, 244));
+        rSButtonHover5.setText("Return Book");
+        rSButtonHover5.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
+        rSButtonHover5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover5MouseClicked(evt);
+            }
+        });
+        rSButtonHover5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonHover5ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(rSButtonHover5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 270, -1));
+
+        rSButtonHover6.setBackground(new java.awt.Color(76, 100, 107));
+        rSButtonHover6.setForeground(new java.awt.Color(220, 240, 244));
+        rSButtonHover6.setText("View All Records");
+        rSButtonHover6.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
+        rSButtonHover6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover6MouseClicked(evt);
+            }
+        });
+        jPanel2.add(rSButtonHover6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 270, -1));
+
+        rSButtonHover3.setBackground(new java.awt.Color(76, 100, 107));
+        rSButtonHover3.setForeground(new java.awt.Color(76, 100, 107));
+        rSButtonHover3.setText("LOGOUT");
+        rSButtonHover3.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
+        rSButtonHover3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover3MouseClicked(evt);
+            }
+        });
+        jPanel2.add(rSButtonHover3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 270, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 1040));
 
@@ -212,13 +237,13 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         jPanel4.add(jPanel5);
-        jPanel5.setBounds(1090, 280, 150, 90);
+        jPanel5.setBounds(800, 270, 150, 90);
 
         jLabel6.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(202, 222, 226));
         jLabel6.setText("Defaulter List");
         jPanel4.add(jLabel6);
-        jLabel6.setBounds(1090, 250, 100, 20);
+        jLabel6.setBounds(800, 240, 100, 20);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
 
@@ -242,7 +267,7 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         jPanel4.add(jPanel6);
-        jPanel6.setBounds(900, 150, 150, 90);
+        jPanel6.setBounds(610, 140, 150, 90);
 
         jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
 
@@ -266,7 +291,7 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         jPanel4.add(jPanel7);
-        jPanel7.setBounds(1090, 150, 150, 90);
+        jPanel7.setBounds(800, 140, 150, 90);
 
         jPanel11.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
 
@@ -290,74 +315,36 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         jPanel4.add(jPanel11);
-        jPanel11.setBounds(900, 280, 150, 90);
+        jPanel11.setBounds(610, 270, 150, 90);
 
         jLabel21.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(202, 222, 226));
         jLabel21.setText("No. of Students");
         jPanel4.add(jLabel21);
-        jLabel21.setBounds(1090, 120, 120, 19);
+        jLabel21.setBounds(800, 110, 120, 19);
 
         jLabel22.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(202, 222, 226));
         jLabel22.setText("Issued Books");
         jPanel4.add(jLabel22);
-        jLabel22.setBounds(900, 250, 100, 19);
-
-        rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"1", "ABC", "IKK", "IKKKK"},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "BOOK ID", "NAME", "AUTHOR", "QUANTITY"
-            }
-        ));
-        rSTableMetro1.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(rSTableMetro1);
-
-        jPanel4.add(jScrollPane1);
-        jScrollPane1.setBounds(70, 530, 640, 180);
+        jLabel22.setBounds(610, 240, 100, 19);
 
         jLabel23.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(202, 222, 226));
         jLabel23.setText("No. of Books");
         jPanel4.add(jLabel23);
-        jLabel23.setBounds(900, 120, 100, 19);
-
-        rSTableMetro2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"1", "ABC", "IKK", "IKKKK"},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "STUDENT ID", "STUDENT NAME", "DEPARTMENT", "PROGRAM"
-            }
-        ));
-        rSTableMetro2.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
-        jScrollPane2.setViewportView(rSTableMetro2);
-
-        jPanel4.add(jScrollPane2);
-        jScrollPane2.setBounds(140, 100, 640, 180);
+        jLabel23.setBounds(610, 110, 100, 19);
 
         panelPieChart.setLayout(new java.awt.BorderLayout());
         jPanel4.add(panelPieChart);
-        panelPieChart.setBounds(750, 400, 490, 410);
+        panelPieChart.setBounds(60, 150, 490, 410);
 
         jLabel4.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(220, 240, 244));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/male_user_50px.png"))); // NOI18N
         jLabel4.setText("Welcome, Admin");
         jPanel4.add(jLabel4);
-        jLabel4.setBounds(1040, 40, 190, 50);
+        jLabel4.setBounds(810, 10, 190, 50);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/BgDashboard.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -370,27 +357,55 @@ public class HomePage extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-510, 10, 1650, -1));
 
-        setSize(new java.awt.Dimension(1568, 870));
+        setSize(new java.awt.Dimension(1294, 776));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+    private void rSButtonHover1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rSButtonHover1ActionPerformed
+
+    private void rSButtonHover1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonHover1MouseClicked
         ManageBooks books = new ManageBooks();
         books.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jLabel11MouseClicked
+    }//GEN-LAST:event_rSButtonHover1MouseClicked
 
-    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+    private void rSButtonHover2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonHover2MouseClicked
         ManageStudents students = new ManageStudents();
         students.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jLabel15MouseClicked
+    }//GEN-LAST:event_rSButtonHover2MouseClicked
 
-    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
+    private void rSButtonHover5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rSButtonHover5ActionPerformed
+
+    private void rSButtonHover4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonHover4MouseClicked
         IssueBook book = new IssueBook();
         book.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jLabel16MouseClicked
+    }//GEN-LAST:event_rSButtonHover4MouseClicked
+
+    private void rSButtonHover4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rSButtonHover4ActionPerformed
+
+    private void rSButtonHover5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonHover5MouseClicked
+        ReturnBook book = new ReturnBook();
+        book.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_rSButtonHover5MouseClicked
+
+    private void rSButtonHover6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonHover6MouseClicked
+        ViewAllRecords records = new ViewAllRecords();
+        records.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_rSButtonHover6MouseClicked
+
+    private void rSButtonHover3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonHover3MouseClicked
+        
+    }//GEN-LAST:event_rSButtonHover3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -420,17 +435,9 @@ public class HomePage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -447,10 +454,12 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel panelPieChart;
-    private rojeru_san.complementos.RSTableMetro rSTableMetro1;
-    private rojeru_san.complementos.RSTableMetro rSTableMetro2;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover1;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover2;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover3;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover4;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover5;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover6;
     // End of variables declaration//GEN-END:variables
 }

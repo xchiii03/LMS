@@ -319,7 +319,7 @@ public class ManageStudents extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "STUDENT ID", "NAME", "DEPARTMENT", "PROGRAM"
             }
         ));
         tbl_bookDetails.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
@@ -331,19 +331,20 @@ public class ManageStudents extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_bookDetails);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 640, 460));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 640, 460));
 
+        jLabel3.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("MANAGE STUDENTS");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Bg_Dashboard.png"))); // NOI18N
         jLabel1.setText("jLabel1");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-580, 0, 1540, 830));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-840, 0, 1540, 830));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 1150, 830));
 
-        setSize(new java.awt.Dimension(1548, 832));
+        setSize(new java.awt.Dimension(1294, 776));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

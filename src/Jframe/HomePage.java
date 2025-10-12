@@ -103,17 +103,6 @@ public class HomePage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        rSButtonHover1 = new rojeru_san.complementos.RSButtonHover();
-        rSButtonHover2 = new rojeru_san.complementos.RSButtonHover();
-        rSButtonHover4 = new rojeru_san.complementos.RSButtonHover();
-        rSButtonHover5 = new rojeru_san.complementos.RSButtonHover();
-        rSButtonHover6 = new rojeru_san.complementos.RSButtonHover();
-        rSButtonHover3 = new rojeru_san.complementos.RSButtonHover();
         jPanel4 = new javax.swing.JPanel();
         lbl = new javax.swing.JPanel();
         lbl_noOfBooks = new javax.swing.JLabel();
@@ -126,120 +115,28 @@ public class HomePage extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         panelPieChart = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        rSButtonHover1 = new rojeru_san.complementos.RSButtonHover();
+        rSButtonHover2 = new rojeru_san.complementos.RSButtonHover();
+        rSButtonHover4 = new rojeru_san.complementos.RSButtonHover();
+        rSButtonHover5 = new rojeru_san.complementos.RSButtonHover();
+        rSButtonHover6 = new rojeru_san.complementos.RSButtonHover();
+        rSButtonHover3 = new rojeru_san.complementos.RSButtonHover();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1280, 728));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(76, 100, 107));
-        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(220, 240, 244));
-        jLabel2.setText("exus LMS");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, 50));
-
-        jLabel10.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(220, 240, 244));
-        jLabel10.setText("LMS Dashboard");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(220, 240, 244));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Home_26px_2.png"))); // NOI18N
-        jLabel3.setText("Homepage");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 126, -1));
-
-        jLabel7.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(220, 240, 244));
-        jLabel7.setText("Features:");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, 20));
-
-        rSButtonHover1.setBackground(new java.awt.Color(76, 100, 107));
-        rSButtonHover1.setForeground(new java.awt.Color(220, 240, 244));
-        rSButtonHover1.setText("Manage Books");
-        rSButtonHover1.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        rSButtonHover1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rSButtonHover1MouseClicked(evt);
-            }
-        });
-        rSButtonHover1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonHover1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 270, -1));
-
-        rSButtonHover2.setBackground(new java.awt.Color(76, 100, 107));
-        rSButtonHover2.setText("Manage Students");
-        rSButtonHover2.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        rSButtonHover2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rSButtonHover2MouseClicked(evt);
-            }
-        });
-        jPanel2.add(rSButtonHover2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 270, -1));
-
-        rSButtonHover4.setBackground(new java.awt.Color(76, 100, 107));
-        rSButtonHover4.setForeground(new java.awt.Color(220, 240, 244));
-        rSButtonHover4.setText("Issue Book");
-        rSButtonHover4.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        rSButtonHover4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rSButtonHover4MouseClicked(evt);
-            }
-        });
-        rSButtonHover4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonHover4ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(rSButtonHover4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 270, -1));
-
-        rSButtonHover5.setBackground(new java.awt.Color(76, 100, 107));
-        rSButtonHover5.setForeground(new java.awt.Color(220, 240, 244));
-        rSButtonHover5.setText("Return Book");
-        rSButtonHover5.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        rSButtonHover5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rSButtonHover5MouseClicked(evt);
-            }
-        });
-        rSButtonHover5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonHover5ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(rSButtonHover5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 270, -1));
-
-        rSButtonHover6.setBackground(new java.awt.Color(76, 100, 107));
-        rSButtonHover6.setForeground(new java.awt.Color(220, 240, 244));
-        rSButtonHover6.setText("View All Records");
-        rSButtonHover6.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        rSButtonHover6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rSButtonHover6MouseClicked(evt);
-            }
-        });
-        jPanel2.add(rSButtonHover6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 270, -1));
-
-        rSButtonHover3.setBackground(new java.awt.Color(76, 100, 107));
-        rSButtonHover3.setForeground(new java.awt.Color(76, 100, 107));
-        rSButtonHover3.setText("LOGOUT");
-        rSButtonHover3.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
-        rSButtonHover3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rSButtonHover3MouseClicked(evt);
-            }
-        });
-        jPanel2.add(rSButtonHover3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 270, -1));
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 1040));
-
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setMaximumSize(new java.awt.Dimension(1280, 728));
+        jPanel4.setMinimumSize(new java.awt.Dimension(1280, 728));
         jPanel4.setLayout(null);
 
         lbl.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
@@ -254,7 +151,7 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(lblLayout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(lbl_noOfBooks)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         lblLayout.setVerticalGroup(
             lblLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,7 +161,7 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         jPanel4.add(lbl);
-        lbl.setBounds(20, 90, 150, 90);
+        lbl.setBounds(360, 100, 150, 90);
 
         jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
 
@@ -278,7 +175,7 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(lbl_noOfStudents)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,7 +185,7 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         jPanel4.add(jPanel7);
-        jPanel7.setBounds(210, 90, 150, 90);
+        jPanel7.setBounds(530, 110, 150, 90);
 
         jPanel11.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
 
@@ -302,7 +199,7 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(lbl_issuedBooks)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,49 +209,236 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         jPanel4.add(jPanel11);
-        jPanel11.setBounds(390, 90, 150, 90);
+        jPanel11.setBounds(710, 110, 150, 90);
 
         jLabel21.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 1, 16)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(202, 222, 226));
         jLabel21.setText("No. of Students");
         jPanel4.add(jLabel21);
-        jLabel21.setBounds(210, 70, 120, 19);
+        jLabel21.setBounds(530, 90, 120, 19);
 
         jLabel22.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 1, 16)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(202, 222, 226));
         jLabel22.setText("Issued Books");
         jPanel4.add(jLabel22);
-        jLabel22.setBounds(390, 70, 100, 20);
+        jLabel22.setBounds(710, 90, 100, 20);
 
         jLabel23.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 1, 16)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(202, 222, 226));
         jLabel23.setText("No. of Books");
         jPanel4.add(jLabel23);
-        jLabel23.setBounds(20, 70, 100, 19);
+        jLabel23.setBounds(360, 80, 100, 19);
 
         panelPieChart.setLayout(new java.awt.BorderLayout());
         jPanel4.add(panelPieChart);
-        panelPieChart.setBounds(70, 210, 490, 410);
+        panelPieChart.setBounds(360, 220, 490, 410);
 
         jLabel4.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(220, 240, 244));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/male_user_50px.png"))); // NOI18N
         jLabel4.setText("Welcome, Admin");
         jPanel4.add(jLabel4);
-        jLabel4.setBounds(810, 10, 190, 50);
+        jLabel4.setBounds(1060, 30, 190, 50);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/BgDashboard.png"))); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(27, 37, 40));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 34)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(119, 224, 250));
+        jLabel2.setText("exus LMS");
+
+        jLabel10.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 22)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(220, 240, 244));
+        jLabel10.setText("LMS Dashboard");
+
+        jLabel3.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(220, 240, 244));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Home_26px_2.png"))); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(220, 240, 244));
+        jLabel7.setText("Features:");
+
+        rSButtonHover1.setBackground(new java.awt.Color(27, 37, 40));
+        rSButtonHover1.setForeground(new java.awt.Color(220, 240, 244));
+        rSButtonHover1.setText("        Manage Books");
+        rSButtonHover1.setColorHover(new java.awt.Color(95, 179, 200));
+        rSButtonHover1.setColorText(new java.awt.Color(220, 240, 244));
+        rSButtonHover1.setColorTextHover(new java.awt.Color(27, 37, 40));
+        rSButtonHover1.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
+        rSButtonHover1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        rSButtonHover1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover1MouseClicked(evt);
+            }
+        });
+        rSButtonHover1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonHover1ActionPerformed(evt);
+            }
+        });
+
+        rSButtonHover2.setBackground(new java.awt.Color(27, 37, 40));
+        rSButtonHover2.setForeground(new java.awt.Color(220, 240, 244));
+        rSButtonHover2.setText("        Manage Students");
+        rSButtonHover2.setColorHover(new java.awt.Color(95, 179, 200));
+        rSButtonHover2.setColorText(new java.awt.Color(220, 240, 244));
+        rSButtonHover2.setColorTextHover(new java.awt.Color(27, 37, 40));
+        rSButtonHover2.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
+        rSButtonHover2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        rSButtonHover2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover2MouseClicked(evt);
+            }
+        });
+
+        rSButtonHover4.setBackground(new java.awt.Color(27, 37, 40));
+        rSButtonHover4.setForeground(new java.awt.Color(220, 240, 244));
+        rSButtonHover4.setText("        Issue Book");
+        rSButtonHover4.setColorHover(new java.awt.Color(95, 179, 200));
+        rSButtonHover4.setColorText(new java.awt.Color(220, 240, 244));
+        rSButtonHover4.setColorTextHover(new java.awt.Color(27, 37, 40));
+        rSButtonHover4.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
+        rSButtonHover4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        rSButtonHover4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover4MouseClicked(evt);
+            }
+        });
+        rSButtonHover4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonHover4ActionPerformed(evt);
+            }
+        });
+
+        rSButtonHover5.setBackground(new java.awt.Color(27, 37, 40));
+        rSButtonHover5.setForeground(new java.awt.Color(220, 240, 244));
+        rSButtonHover5.setText("        Return Book");
+        rSButtonHover5.setColorHover(new java.awt.Color(95, 179, 200));
+        rSButtonHover5.setColorText(new java.awt.Color(220, 240, 244));
+        rSButtonHover5.setColorTextHover(new java.awt.Color(27, 37, 40));
+        rSButtonHover5.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
+        rSButtonHover5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        rSButtonHover5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover5MouseClicked(evt);
+            }
+        });
+        rSButtonHover5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonHover5ActionPerformed(evt);
+            }
+        });
+
+        rSButtonHover6.setBackground(new java.awt.Color(27, 37, 40));
+        rSButtonHover6.setForeground(new java.awt.Color(220, 240, 244));
+        rSButtonHover6.setText("        View All Records");
+        rSButtonHover6.setColorHover(new java.awt.Color(95, 179, 200));
+        rSButtonHover6.setColorText(new java.awt.Color(220, 240, 244));
+        rSButtonHover6.setColorTextHover(new java.awt.Color(27, 37, 40));
+        rSButtonHover6.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
+        rSButtonHover6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        rSButtonHover6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover6MouseClicked(evt);
+            }
+        });
+
+        rSButtonHover3.setBackground(new java.awt.Color(27, 37, 40));
+        rSButtonHover3.setForeground(new java.awt.Color(220, 240, 244));
+        rSButtonHover3.setText("        LOGOUT");
+        rSButtonHover3.setColorHover(new java.awt.Color(95, 179, 200));
+        rSButtonHover3.setColorText(new java.awt.Color(220, 240, 244));
+        rSButtonHover3.setColorTextHover(new java.awt.Color(27, 37, 40));
+        rSButtonHover3.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
+        rSButtonHover3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        rSButtonHover3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover3MouseClicked(evt);
+            }
+        });
+        rSButtonHover3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonHover3ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Logo_Base_Dashboard.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel10))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel7))
+            .addComponent(rSButtonHover1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(rSButtonHover2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(rSButtonHover4, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(rSButtonHover5, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(rSButtonHover6, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(rSButtonHover3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel2)
+                .addGap(36, 36, 36))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(rSButtonHover1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(rSButtonHover2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(rSButtonHover4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(rSButtonHover5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(rSButtonHover6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(rSButtonHover3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel4.add(jPanel2);
+        jPanel2.setBounds(0, 0, 270, 728);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Bg_Dashboard.png"))); // NOI18N
         jLabel1.setText("jLabel1");
+        jLabel1.setMaximumSize(new java.awt.Dimension(1280, 728));
+        jLabel1.setMinimumSize(new java.awt.Dimension(1280, 728));
+        jLabel1.setPreferredSize(new java.awt.Dimension(1280, 728));
         jPanel4.add(jLabel1);
-        jLabel1.setBounds(-270, -10, 1290, 860);
+        jLabel1.setBounds(30, -10, 1290, 860);
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 1280, 860));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 728));
 
         jPanel1.setBackground(new java.awt.Color(55, 75, 80));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-510, 10, 1650, -1));
 
-        setSize(new java.awt.Dimension(1294, 776));
+        setSize(new java.awt.Dimension(1298, 737));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -417,6 +501,10 @@ public class HomePage extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_rSButtonHover3MouseClicked
 
+    private void rSButtonHover3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rSButtonHover3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -451,6 +539,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;

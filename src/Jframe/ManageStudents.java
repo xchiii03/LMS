@@ -179,9 +179,7 @@ public class ManageStudents extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 728));
         setMinimumSize(new java.awt.Dimension(1280, 728));
-        setPreferredSize(new java.awt.Dimension(1280, 728));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -190,7 +188,7 @@ public class ManageStudents extends javax.swing.JFrame {
         jPanel3.setPreferredSize(new java.awt.Dimension(1280, 728));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tbl_bookDetails.setBackground(new java.awt.Color(27, 37, 40));
+        tbl_bookDetails.setBackground(new java.awt.Color(38, 52, 56));
         tbl_bookDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -200,8 +198,15 @@ public class ManageStudents extends javax.swing.JFrame {
             }
         ));
         tbl_bookDetails.setColorBackgoundHead(new java.awt.Color(95, 179, 200));
-        tbl_bookDetails.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tbl_bookDetails.setColorBordeFilas(new java.awt.Color(27, 37, 40));
+        tbl_bookDetails.setColorBordeHead(new java.awt.Color(27, 37, 40));
+        tbl_bookDetails.setColorFilasBackgound1(new java.awt.Color(220, 240, 244));
+        tbl_bookDetails.setColorFilasBackgound2(new java.awt.Color(220, 240, 244));
+        tbl_bookDetails.setColorFilasForeground1(new java.awt.Color(95, 179, 200));
+        tbl_bookDetails.setColorFilasForeground2(new java.awt.Color(95, 179, 200));
         tbl_bookDetails.setColorForegroundHead(new java.awt.Color(27, 37, 40));
+        tbl_bookDetails.setColorSelBackgound(new java.awt.Color(95, 179, 200));
+        tbl_bookDetails.setColorSelForeground(new java.awt.Color(220, 240, 244));
         tbl_bookDetails.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_bookDetailsMouseClicked(evt);
@@ -209,7 +214,7 @@ public class ManageStudents extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_bookDetails);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, 640, 460));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, 640, 460));
 
         jPanel1.setBackground(new java.awt.Color(27, 37, 40));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -257,6 +262,7 @@ public class ManageStudents extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(95, 179, 200));
         jButton4.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(27, 37, 40));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/icons8_Exit_edited.png"))); // NOI18N
         jButton4.setText("Back");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -350,7 +356,6 @@ public class ManageStudents extends javax.swing.JFrame {
         jLabel4.setBackground(new java.awt.Color(95, 179, 200));
         jLabel4.setForeground(new java.awt.Color(27, 37, 40));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Bg_Dashboard.png"))); // NOI18N
-        jLabel4.setText("jLabel4");
         jLabel4.setToolTipText("");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 730));
 
@@ -416,7 +421,6 @@ public class ManageStudents extends javax.swing.JFrame {
     }//GEN-LAST:event_combo_courseNameActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
         HomePage home = new HomePage();
         home.setVisible(true);
         dispose();

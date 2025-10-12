@@ -176,10 +176,12 @@ public class ManageStudents extends javax.swing.JFrame {
         combo_branch = new javax.swing.JComboBox<>();
         combo_courseName = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
+        rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 728));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -327,7 +329,7 @@ public class ManageStudents extends javax.swing.JFrame {
         combo_branch.setBackground(new java.awt.Color(92, 112, 117));
         combo_branch.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         combo_branch.setForeground(new java.awt.Color(202, 222, 226));
-        combo_branch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CPE", "IE", "ECE", "IT", " " }));
+        combo_branch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BSCPE", "BSIE", "BSECE", "BSED", "BSN", "BSA", "BSBA", "BSIT", "BSCS", " ", " " }));
         combo_branch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_branchActionPerformed(evt);
@@ -338,7 +340,7 @@ public class ManageStudents extends javax.swing.JFrame {
         combo_courseName.setBackground(new java.awt.Color(92, 112, 117));
         combo_courseName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         combo_courseName.setForeground(new java.awt.Color(202, 222, 226));
-        combo_courseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COE", "COED", "CBAA" }));
+        combo_courseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COE", "COED", "CBAA", "CAS", "CHAS", "CC" }));
         combo_courseName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_courseNameActionPerformed(evt);
@@ -353,6 +355,15 @@ public class ManageStudents extends javax.swing.JFrame {
 
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 728));
 
+        rSButtonHover7.setBackground(new java.awt.Color(95, 179, 200));
+        rSButtonHover7.setText("X");
+        rSButtonHover7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover7MouseClicked(evt);
+            }
+        });
+        jPanel3.add(rSButtonHover7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 0, 50, 25));
+
         jLabel4.setBackground(new java.awt.Color(95, 179, 200));
         jLabel4.setForeground(new java.awt.Color(27, 37, 40));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Bg_Dashboard.png"))); // NOI18N
@@ -361,7 +372,7 @@ public class ManageStudents extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 728));
 
-        setSize(new java.awt.Dimension(1294, 737));
+        setSize(new java.awt.Dimension(1280, 729));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -426,6 +437,10 @@ public class ManageStudents extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void rSButtonHover7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonHover7MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_rSButtonHover7MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -468,6 +483,7 @@ public class ManageStudents extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover7;
     private rojerusan.RSButtonMetroBeanInfo rSButtonMetroBeanInfo1;
     private rojerusan.RSButtonMetroBeanInfo rSButtonMetroBeanInfo2;
     private rojeru_san.complementos.RSTableMetro tbl_bookDetails;

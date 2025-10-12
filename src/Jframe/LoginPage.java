@@ -91,12 +91,13 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1280, 728));
         setMinimumSize(new java.awt.Dimension(1280, 728));
-        setPreferredSize(new java.awt.Dimension(1280, 728));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -167,6 +168,14 @@ public class LoginPage extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Logo_Login.png"))); // NOI18N
 
+        rSButtonHover7.setBackground(new java.awt.Color(95, 179, 200));
+        rSButtonHover7.setText("X");
+        rSButtonHover7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover7MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -202,16 +211,17 @@ public class LoginPage extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(2, 2, 2)
                         .addComponent(jLabel1)
-                        .addGap(105, 105, 105))))
+                        .addGap(105, 105, 105))
+                    .addComponent(rSButtonHover7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addComponent(rSButtonHover7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addGap(20, 20, 20)))
                 .addGap(33, 33, 33)
@@ -247,7 +257,7 @@ public class LoginPage extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 728));
         jPanel1.getAccessibleContext().setAccessibleName("");
 
-        setSize(new java.awt.Dimension(1294, 737));
+        setSize(new java.awt.Dimension(1280, 729));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -270,6 +280,10 @@ public class LoginPage extends javax.swing.JFrame {
         signup.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void rSButtonHover7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonHover7MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_rSButtonHover7MouseClicked
 
     /**
      * @param args the command line arguments
@@ -308,6 +322,7 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover7;
     private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle1;
     private app.bolivia.swing.JCTextField txt_password;
     private app.bolivia.swing.JCTextField txt_username;

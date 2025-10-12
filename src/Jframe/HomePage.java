@@ -34,33 +34,25 @@ public class HomePage extends javax.swing.JFrame {
         showPieChart();
         setDataToCards();
     }
-    public void setDataToCards(){
-        Statement st = null;
-        ResultSet rs = null;
-        
-        long l = System.currentTimeMillis();
-        Date todaysDate = new Date(l);
-        
-        try {
-            Connection con = DBConnection.getConnection();
-            st = con.createStatement();
-            rs = st.executeQuery("select * from book_details");
-            rs.last();
-            lbl_noOfBooks.setText(Integer.toString(rs.getRow()));
-            
-            rs = st.executeQuery("select * from student_details");
-            rs.last();
-            lbl_noOfStudents.setText(Integer.toString(rs.getRow()));
-            
-            rs = st.executeQuery("select * from issue_book_details where status = '"+"pending"+"'");
-            rs.last();
-            lbl_issuedBooks.setText(Integer.toString(rs.getRow()));
-            
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        
+    public void setDataToCards() {
+    try {
+        Connection con = DBConnection.getConnection();
+        Statement st = con.createStatement();
+
+        ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM book_details");
+        if (rs.next()) lbl_noOfBooks.setText(rs.getString(1));
+
+        rs = st.executeQuery("SELECT COUNT(*) FROM student_details");
+        if (rs.next()) lbl_noOfStudents.setText(rs.getString(1));
+
+        rs = st.executeQuery("SELECT COUNT(*) FROM issue_book_details WHERE status = 'pending'");
+        if (rs.next()) lbl_issuedBooks.setText(rs.getString(1));
+
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
+
     
     public void showPieChart() {
 
@@ -127,11 +119,14 @@ public class HomePage extends javax.swing.JFrame {
         rSButtonHover6 = new rojeru_san.complementos.RSButtonHover();
         rSButtonHover3 = new rojeru_san.complementos.RSButtonHover();
         jLabel5 = new javax.swing.JLabel();
+        rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 728));
         setMinimumSize(new java.awt.Dimension(1280, 728));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -142,7 +137,7 @@ public class HomePage extends javax.swing.JFrame {
         lbl.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
 
         lbl_noOfBooks.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        lbl_noOfBooks.setText("10");
+        lbl_noOfBooks.setText("0");
 
         javax.swing.GroupLayout lblLayout = new javax.swing.GroupLayout(lbl);
         lbl.setLayout(lblLayout);
@@ -151,7 +146,7 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(lblLayout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(lbl_noOfBooks)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         lblLayout.setVerticalGroup(
             lblLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +161,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
 
         lbl_noOfStudents.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        lbl_noOfStudents.setText("10");
+        lbl_noOfStudents.setText("0");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -175,7 +170,7 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(lbl_noOfStudents)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,12 +180,12 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         jPanel4.add(jPanel7);
-        jPanel7.setBounds(530, 110, 150, 90);
+        jPanel7.setBounds(540, 100, 150, 90);
 
         jPanel11.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
 
         lbl_issuedBooks.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        lbl_issuedBooks.setText("10");
+        lbl_issuedBooks.setText("0");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -199,7 +194,7 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(lbl_issuedBooks)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,19 +204,19 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         jPanel4.add(jPanel11);
-        jPanel11.setBounds(710, 110, 150, 90);
+        jPanel11.setBounds(720, 100, 150, 90);
 
         jLabel21.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 1, 16)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(202, 222, 226));
         jLabel21.setText("No. of Students");
         jPanel4.add(jLabel21);
-        jLabel21.setBounds(530, 90, 120, 19);
+        jLabel21.setBounds(540, 80, 120, 19);
 
         jLabel22.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 1, 16)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(202, 222, 226));
         jLabel22.setText("Issued Books");
         jPanel4.add(jLabel22);
-        jLabel22.setBounds(710, 90, 100, 20);
+        jLabel22.setBounds(720, 80, 100, 20);
 
         jLabel23.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 1, 16)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(202, 222, 226));
@@ -238,7 +233,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/male_user_50px.png"))); // NOI18N
         jLabel4.setText("Welcome, Admin");
         jPanel4.add(jLabel4);
-        jLabel4.setBounds(1060, 30, 190, 50);
+        jLabel4.setBounds(1040, 20, 190, 50);
 
         jPanel2.setBackground(new java.awt.Color(27, 37, 40));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -424,6 +419,16 @@ public class HomePage extends javax.swing.JFrame {
         jPanel4.add(jPanel2);
         jPanel2.setBounds(0, 0, 270, 728);
 
+        rSButtonHover7.setBackground(new java.awt.Color(95, 179, 200));
+        rSButtonHover7.setText("X");
+        rSButtonHover7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover7MouseClicked(evt);
+            }
+        });
+        jPanel4.add(rSButtonHover7);
+        rSButtonHover7.setBounds(1230, 0, 50, 25);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Bg_Dashboard.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         jLabel1.setMaximumSize(new java.awt.Dimension(1280, 728));
@@ -438,7 +443,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-510, 10, 1650, -1));
 
-        setSize(new java.awt.Dimension(1298, 737));
+        setSize(new java.awt.Dimension(1284, 729));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -505,6 +510,10 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rSButtonHover3ActionPerformed
 
+    private void rSButtonHover7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonHover7MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_rSButtonHover7MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -557,5 +566,6 @@ public class HomePage extends javax.swing.JFrame {
     private rojeru_san.complementos.RSButtonHover rSButtonHover4;
     private rojeru_san.complementos.RSButtonHover rSButtonHover5;
     private rojeru_san.complementos.RSButtonHover rSButtonHover6;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover7;
     // End of variables declaration//GEN-END:variables
 }

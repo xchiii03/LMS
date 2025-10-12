@@ -111,12 +111,14 @@ public void setIssueBookDetailsToTable(){
         jButton1 = new javax.swing.JButton();
         txt_search = new app.bolivia.swing.JCTextField();
         jLabel2 = new javax.swing.JLabel();
+        rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_issueBookDetails = new rojeru_san.complementos.RSTableMetro();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 728));
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 728));
@@ -181,6 +183,16 @@ public void setIssueBookDetailsToTable(){
         jLabel2.setText("VIEW ALL RECORDS");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, 310, 36));
 
+        rSButtonHover7.setBackground(new java.awt.Color(95, 179, 200));
+        rSButtonHover7.setForeground(new java.awt.Color(0, 0, 0));
+        rSButtonHover7.setText("X");
+        rSButtonHover7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover7MouseClicked(evt);
+            }
+        });
+        jPanel2.add(rSButtonHover7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 0, 50, 25));
+
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 160));
 
         tbl_issueBookDetails.setBackground(new java.awt.Color(38, 52, 56));
@@ -225,7 +237,7 @@ public void setIssueBookDetailsToTable(){
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setSize(new java.awt.Dimension(1296, 736));
+        setSize(new java.awt.Dimension(1282, 728));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -252,6 +264,10 @@ public void setIssueBookDetailsToTable(){
     private void txt_searchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_searchKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_searchKeyPressed
+
+    private void rSButtonHover7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonHover7MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_rSButtonHover7MouseClicked
 
     /**
      * @param args the command line arguments
@@ -286,6 +302,7 @@ public void setIssueBookDetailsToTable(){
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover7;
     private rojeru_san.complementos.RSTableMetro tbl_issueBookDetails;
     private app.bolivia.swing.JCTextField txt_search;
     // End of variables declaration//GEN-END:variables

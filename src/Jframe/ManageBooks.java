@@ -6,6 +6,7 @@ package Jframe;
 
 
 
+import java.awt.Component;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.Connection;
@@ -32,7 +33,16 @@ public class ManageBooks extends javax.swing.JFrame {
     public ManageBooks() {
         initComponents();
         setBookDetailsToTable();
+        
+
+
+        
     }
+    
+    
+    //Table
+    
+    
     //to set book details to the table
     public void setBookDetailsToTable(){
         
@@ -179,10 +189,12 @@ public class ManageBooks extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_bookDetails = new rojeru_san.complementos.RSTableMetro();
         jLabel2 = new javax.swing.JLabel();
+        rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 728));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -334,7 +346,15 @@ public class ManageBooks extends javax.swing.JFrame {
             new String [] {
                 "BOOK ID", "TITLE", "AUTHOR", "QUANTITY"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_bookDetails.setColorBackgoundHead(new java.awt.Color(95, 179, 200));
         tbl_bookDetails.setColorBordeFilas(new java.awt.Color(27, 37, 40));
         tbl_bookDetails.setColorBordeHead(new java.awt.Color(27, 37, 40));
@@ -351,9 +371,14 @@ public class ManageBooks extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tbl_bookDetails);
+        if (tbl_bookDetails.getColumnModel().getColumnCount() > 0) {
+            tbl_bookDetails.getColumnModel().getColumn(0).setPreferredWidth(30);
+            tbl_bookDetails.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tbl_bookDetails.getColumnModel().getColumn(3).setPreferredWidth(20);
+        }
 
         jPanel3.add(jScrollPane1);
-        jScrollPane1.setBounds(600, 120, 640, 460);
+        jScrollPane1.setBounds(600, 120, 640, 360);
 
         jLabel2.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -366,6 +391,16 @@ public class ManageBooks extends javax.swing.JFrame {
         jPanel3.add(jLabel2);
         jLabel2.setBounds(0, 0, 40, 19);
 
+        rSButtonHover7.setBackground(new java.awt.Color(95, 179, 200));
+        rSButtonHover7.setText("X");
+        rSButtonHover7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover7MouseClicked(evt);
+            }
+        });
+        jPanel3.add(rSButtonHover7);
+        rSButtonHover7.setBounds(1230, 0, 50, 25);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Bg_Dashboard.png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(1280, 728));
         jLabel1.setMinimumSize(new java.awt.Dimension(1280, 728));
@@ -375,7 +410,7 @@ public class ManageBooks extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 728));
 
-        setSize(new java.awt.Dimension(1295, 737));
+        setSize(new java.awt.Dimension(1281, 729));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -446,6 +481,10 @@ public class ManageBooks extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void rSButtonHover7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonHover7MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_rSButtonHover7MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -487,6 +526,7 @@ public class ManageBooks extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover7;
     private rojerusan.RSButtonMetroBeanInfo rSButtonMetroBeanInfo1;
     private rojerusan.RSButtonMetroBeanInfo rSButtonMetroBeanInfo2;
     private rojeru_san.complementos.RSTableMetro tbl_bookDetails;

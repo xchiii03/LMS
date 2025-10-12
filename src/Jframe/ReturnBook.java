@@ -153,10 +153,12 @@ public class ReturnBook extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 728));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panel_main.setBackground(new java.awt.Color(255, 255, 255));
@@ -335,13 +337,28 @@ public class ReturnBook extends javax.swing.JFrame {
         jPanel2.add(jPanel3);
         jPanel3.setBounds(0, 0, 440, 728);
 
+        rSButtonHover7.setBackground(new java.awt.Color(95, 179, 200));
+        rSButtonHover7.setText("X");
+        rSButtonHover7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSButtonHover7MouseClicked(evt);
+            }
+        });
+        rSButtonHover7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonHover7ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(rSButtonHover7);
+        rSButtonHover7.setBounds(1230, 0, 50, 25);
+
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Bg_Dashboard.png"))); // NOI18N
         jPanel2.add(jLabel3);
         jLabel3.setBounds(0, 0, 1280, 730);
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 728));
 
-        setSize(new java.awt.Dimension(1294, 737));
+        setSize(new java.awt.Dimension(1280, 729));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -383,6 +400,14 @@ public class ReturnBook extends javax.swing.JFrame {
         home.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void rSButtonHover7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonHover7MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_rSButtonHover7MouseClicked
+
+    private void rSButtonHover7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rSButtonHover7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -434,6 +459,7 @@ public class ReturnBook extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_issueId;
     private javax.swing.JLabel lbl_studentName;
     private javax.swing.JPanel panel_main;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover7;
     private app.bolivia.swing.JCTextField txt_bookId;
     private app.bolivia.swing.JCTextField txt_studentId;
     // End of variables declaration//GEN-END:variables

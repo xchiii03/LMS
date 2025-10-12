@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.util.Date;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -29,51 +30,81 @@ public class IssueBook extends javax.swing.JFrame {
     //catch book details from database
     public void getBookDetails(){
         int bookId = Integer.parseInt(txt_bookId.getText());
-        
+
         try {
             Connection con = DBConnection.getConnection();
             PreparedStatement pst = con.prepareStatement("select * from book_details where book_id = ?");
             pst.setInt(1, bookId);
             ResultSet rs = pst.executeQuery();
-            
-            if (rs.next()){
-                
+
+            if (rs.next()) {
                 lbl_bookId.setText(rs.getString("book_id"));
                 lbl_bookName.setText(rs.getString("book_name"));
                 lbl_author.setText(rs.getString("author"));
                 lbl_quantity.setText(rs.getString("quantity"));
-            }else{
+
+            // ✅ Clear error message if valid
+                lbl_bookError.setText("");
+            } else {
+            // ❌ Show error message
                 lbl_bookError.setText("Invalid book id");
+
+            // ✅ Clear previous details
+                lbl_bookId.setText("");
+                lbl_bookName.setText("");
+                lbl_author.setText("");
+                lbl_quantity.setText("");
+
+            // ⏳ Hide error message automatically after 3 seconds
+                Timer timer = new Timer(3000, e -> lbl_bookError.setText(""));
+                timer.setRepeats(false);
+                timer.start();
             }
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
-            
         }
     }
     
      public void getStudentDetails(){
         int studentId = Integer.parseInt(txt_studentId.getText());
-        
+
         try {
             Connection con = DBConnection.getConnection();
             PreparedStatement pst = con.prepareStatement("select * from student_details where student_id = ?");
             pst.setInt(1, studentId);
             ResultSet rs = pst.executeQuery();
-            
-            if (rs.next()){
-                
+
+            if (rs.next()) {
                 lbl_studentId.setText(rs.getString("student_id"));
                 lbl_studentName.setText(rs.getString("name"));
                 lbl_department.setText(rs.getString("department"));
                 lbl_program.setText(rs.getString("program"));
-            }else{
+
+            // ✅ Clear error message if valid
+                lbl_studentError.setText("");
+            } else {
+            // ❌ Show error message
                 lbl_studentError.setText("Invalid student id");
+
+            // ✅ Clear previous details
+                lbl_studentId.setText("");
+                lbl_studentName.setText("");
+                lbl_department.setText("");
+                lbl_program.setText("");
+
+            // ⏳ Hide error message automatically after 3 seconds
+                Timer timer = new Timer(3000, e -> lbl_studentError.setText(""));
+                timer.setRepeats(false); // Only run once
+                timer.start();
             }
-        }catch(Exception e){
-            e.printStackTrace();
-            
+
+        } catch (Exception e) {
+        e.printStackTrace();
         }
     }
+ 
+     
      //insert issued book details
      public boolean issueBook(){
          boolean isIssued = false;
@@ -358,12 +389,12 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(202, 222, 226));
         jLabel14.setText("DEPARTMENT:");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 90, -1));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 100, -1));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(202, 222, 226));
         jLabel15.setText("PROGRAM:");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 70, -1));
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 80, -1));
 
         lbl_studentId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_studentId.setForeground(new java.awt.Color(202, 222, 226));
@@ -381,10 +412,9 @@ public class IssueBook extends javax.swing.JFrame {
         lbl_program.setForeground(new java.awt.Color(202, 222, 226));
         jPanel2.add(lbl_program, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 120, 20));
 
-        lbl_studentError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_studentError.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_studentError.setForeground(new java.awt.Color(202, 222, 226));
-        lbl_studentError.setText("QUANTITY:");
-        jPanel2.add(lbl_studentError, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 270, 30));
+        jPanel2.add(lbl_studentError, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 270, 50));
 
         jPanel5.add(jPanel2);
         jPanel2.setBounds(470, 90, 390, 528);
@@ -434,10 +464,9 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel4.setText("QUANTITY:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 70, -1));
 
-        lbl_bookError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_bookError.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_bookError.setForeground(new java.awt.Color(202, 222, 226));
-        lbl_bookError.setText("QUANTITY:");
-        jPanel1.add(lbl_bookError, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 260, 30));
+        jPanel1.add(lbl_bookError, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 260, 40));
 
         jPanel5.add(jPanel1);
         jPanel1.setBounds(860, 90, 390, 528);

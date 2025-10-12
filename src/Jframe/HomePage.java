@@ -264,7 +264,7 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         jPanel4.add(lbl);
-        lbl.setBounds(610, 140, 150, 90);
+        lbl.setBounds(20, 90, 150, 90);
 
         jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
 
@@ -288,7 +288,7 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         jPanel4.add(jPanel7);
-        jPanel7.setBounds(800, 140, 150, 90);
+        jPanel7.setBounds(210, 90, 150, 90);
 
         jPanel11.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
 
@@ -312,29 +312,29 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         jPanel4.add(jPanel11);
-        jPanel11.setBounds(610, 270, 150, 90);
+        jPanel11.setBounds(390, 90, 150, 90);
 
-        jLabel21.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 1, 16)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(202, 222, 226));
         jLabel21.setText("No. of Students");
         jPanel4.add(jLabel21);
-        jLabel21.setBounds(800, 110, 120, 19);
+        jLabel21.setBounds(210, 70, 120, 19);
 
-        jLabel22.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 1, 16)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(202, 222, 226));
         jLabel22.setText("Issued Books");
         jPanel4.add(jLabel22);
-        jLabel22.setBounds(610, 240, 100, 19);
+        jLabel22.setBounds(390, 70, 100, 20);
 
-        jLabel23.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 1, 16)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(202, 222, 226));
         jLabel23.setText("No. of Books");
         jPanel4.add(jLabel23);
-        jLabel23.setBounds(610, 110, 100, 19);
+        jLabel23.setBounds(20, 70, 100, 19);
 
         panelPieChart.setLayout(new java.awt.BorderLayout());
         jPanel4.add(panelPieChart);
-        panelPieChart.setBounds(60, 150, 490, 410);
+        panelPieChart.setBounds(70, 210, 490, 410);
 
         jLabel4.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(220, 240, 244));
@@ -346,7 +346,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/BgDashboard.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         jPanel4.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1290, 860);
+        jLabel1.setBounds(-270, -10, 1290, 860);
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 1280, 860));
 

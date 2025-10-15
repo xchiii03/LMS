@@ -146,6 +146,44 @@ public class ManageStudents extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tbl_bookDetails.getModel();
         model.setRowCount(0);
     }
+    
+    //search
+    public void search(String stats) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms", "root", "");
+            Statement st = con.createStatement();
+            String query;
+
+        if (stats.isEmpty()) {
+            // If no text entered, show all records
+            query = "SELECT * FROM student_details";
+        } else {
+            // Search by book name, student name, or status
+            query = "SELECT * FROM student_details WHERE "
+                + "student_id LIKE '%" + stats + "%' OR "
+                + "name LIKE '%" + stats + "%' OR "
+                + "department LIKE '%" + stats + "%' OR "
+                + "program LIKE '%" + stats + "%'";
+
+        }
+
+        ResultSet rs = st.executeQuery(query);
+        while (rs.next()) {
+            String student_id = rs.getString("student_id");
+            String name = rs.getString("name");
+            String department = rs.getString("department");
+            String program = rs.getString("program");
+            
+
+            Object[] obj = {student_id, name, department, program};
+            model = (DefaultTableModel) tbl_bookDetails.getModel();
+            model.addRow(obj);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -177,6 +215,7 @@ public class ManageStudents extends javax.swing.JFrame {
         combo_courseName = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
+        txt_search = new app.bolivia.swing.JCTextField();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -364,6 +403,28 @@ public class ManageStudents extends javax.swing.JFrame {
         });
         jPanel3.add(rSButtonHover7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 0, 50, 25));
 
+        txt_search.setBackground(new java.awt.Color(92, 112, 117));
+        txt_search.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_search.setForeground(new java.awt.Color(202, 222, 226));
+        txt_search.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txt_search.setPlaceholder("Search...");
+        txt_search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt_searchMouseClicked(evt);
+            }
+        });
+        txt_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_searchActionPerformed(evt);
+            }
+        });
+        txt_search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_searchKeyPressed(evt);
+            }
+        });
+        jPanel3.add(txt_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 80, -1, -1));
+
         jLabel4.setBackground(new java.awt.Color(95, 179, 200));
         jLabel4.setForeground(new java.awt.Color(27, 37, 40));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Bg_Dashboard.png"))); // NOI18N
@@ -441,6 +502,20 @@ public class ManageStudents extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_rSButtonHover7MouseClicked
 
+    private void txt_searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_searchMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_searchMouseClicked
+
+    private void txt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchActionPerformed
+        String selectedStatus = txt_search.getText().trim(); // read user input
+        clearTable(); // clear current data
+        search(selectedStatus);
+    }//GEN-LAST:event_txt_searchActionPerformed
+
+    private void txt_searchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_searchKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_searchKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -487,6 +562,7 @@ public class ManageStudents extends javax.swing.JFrame {
     private rojerusan.RSButtonMetroBeanInfo rSButtonMetroBeanInfo1;
     private rojerusan.RSButtonMetroBeanInfo rSButtonMetroBeanInfo2;
     private rojeru_san.complementos.RSTableMetro tbl_bookDetails;
+    private app.bolivia.swing.JCTextField txt_search;
     private app.bolivia.swing.JCTextField txt_studentId;
     private app.bolivia.swing.JCTextField txt_studentName;
     // End of variables declaration//GEN-END:variables

@@ -89,8 +89,8 @@ public class SignupPage extends javax.swing.JFrame {
         boolean isExist = false;
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms","root","");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms","root","");
             
             PreparedStatement pst = con.prepareStatement("select * from users where name = ?");
             pst.setString(1, name);

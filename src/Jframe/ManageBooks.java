@@ -27,7 +27,7 @@ public class ManageBooks extends javax.swing.JFrame {
     /**
      * Creates new form ManageBooks
      */
-    String bookName, author;
+    String bookName, author, ISBN;
     int bookId, quantity;
     DefaultTableModel model;
     public ManageBooks() {
@@ -47,18 +47,19 @@ public class ManageBooks extends javax.swing.JFrame {
     public void setBookDetailsToTable(){
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms","root","");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms","root","");
             Statement st =  con.createStatement();
             ResultSet rs = st.executeQuery("select * from book_details");
             
             while(rs.next()){
                 String bookId = rs.getString("book_id");
                 String bookName = rs.getString("book_name");
-                String author = rs.getString("author");
+                String author = rs.getString("author_name");
+                String ISBN = rs.getString("ISBN");
                 int quantity =  rs.getInt("quantity");
                 
-                Object [] obj = {bookId,bookName,author,quantity};
+                Object [] obj = {bookId,bookName,author,ISBN,quantity};
                 model = (DefaultTableModel)tbl_bookDetails.getModel();
                 model.addRow(obj);
                 
@@ -73,16 +74,18 @@ public class ManageBooks extends javax.swing.JFrame {
         bookId = Integer.parseInt(txt_bookId.getText());
         bookName = txt_bookName.getText();
         author = txt_authorName.getText();
+        ISBN = txt_ISBN.getText();
         quantity = Integer.parseInt(txt_quantity.getText());
         
         try {
             Connection con = DBConnection.getConnection();
-            String sql = "INSERT INTO book_details (book_id, book_name, author, quantity) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO book_details (book_id, book_name, author_name, ISBN, quantity) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setInt(1,bookId);
             pst.setString(2, bookName);
             pst.setString(3, author);
-            pst.setInt(4,quantity);
+            pst.setString(4,ISBN);
+            pst.setInt(5,quantity);
             
             int rowCount = pst.executeUpdate();
             if (rowCount>0) {
@@ -105,15 +108,18 @@ public class ManageBooks extends javax.swing.JFrame {
         bookName = txt_bookName.getText();
         author = txt_authorName.getText();
         quantity = Integer.parseInt(txt_quantity.getText());
+        ISBN = txt_ISBN.getText();
         
         try {
             Connection con = DBConnection.getConnection();
-            String sql = "update book_details set book_name = ?,author = ?, quantity = ? where book_id = ?";
+            String sql = "UPDATE book_details SET book_name = ?, author_name = ?, ISBN = ?, quantity = ? WHERE book_id = ?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, bookName);
             pst.setString(2, author);
-            pst.setInt(3,quantity);
-            pst.setInt(4, bookId);
+            pst.setString(3, ISBN);
+            pst.setInt(4, quantity);
+            pst.setInt(5, bookId);
+                        
             
             int rowCount = pst.executeUpdate();
             if(rowCount > 0){
@@ -160,40 +166,42 @@ public class ManageBooks extends javax.swing.JFrame {
     //search
     public void search(String stats) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms", "root", "");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms", "root", "");
             Statement st = con.createStatement();
             String query;
 
-        if (stats.isEmpty()) {
-            // If no text entered, show all records
-            query = "SELECT * FROM book_details";
-        } else {
-            // Search by book name, student name, or status
-            query = "SELECT * FROM book_details WHERE "
-                + "book_id LIKE '%" + stats + "%' OR "
-                + "book_name LIKE '%" + stats + "%' OR "
-                + "author LIKE '%" + stats + "%' OR "
-                + "quantity LIKE '%" + stats + "%'";
+            if (stats.isEmpty()) {
+                // If no text entered, show all records
+                query = "SELECT * FROM book_details";
+            } else {
+                // Search by book name, student name, or status
+                query = "SELECT * FROM book_details WHERE "
+                    + "book_id LIKE '%" + stats + "%' OR "
+                    + "book_name LIKE '%" + stats + "%' OR "
+                    + "author_name LIKE '%" + stats + "%' OR "
+                    + "ISBN LIKE '%" + stats + "%' OR "
+                    + "quantity LIKE '%" + stats + "%'";
 
+            }
+
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                String book_id = rs.getString("book_id");
+                String bookName = rs.getString("book_name");
+                String author = rs.getString("author_name");
+                String ISBN = rs.getString("ISBN");
+                Integer quantity = rs.getInt("quantity");
+
+
+                Object[] obj = {book_id, bookName, author,ISBN, quantity};
+                model = (DefaultTableModel) tbl_bookDetails.getModel();
+                model.addRow(obj);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        ResultSet rs = st.executeQuery(query);
-        while (rs.next()) {
-            String book_id = rs.getString("book_id");
-            String bookName = rs.getString("book_name");
-            String author = rs.getString("author");
-            Integer quantity = rs.getInt("quantity");
-            
-
-            Object[] obj = {book_id, bookName, author, quantity};
-            model = (DefaultTableModel) tbl_bookDetails.getModel();
-            model.addRow(obj);
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
     }
-}
 
     
     
@@ -225,6 +233,8 @@ public class ManageBooks extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txt_ISBN = new app.bolivia.swing.JCTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_bookDetails = new rojeru_san.complementos.RSTableMetro();
         jLabel2 = new javax.swing.JLabel();
@@ -244,7 +254,6 @@ public class ManageBooks extends javax.swing.JFrame {
         jPanel3.setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(27, 37, 40));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txt_bookId.setBackground(new java.awt.Color(92, 112, 117));
         txt_bookId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -255,27 +264,24 @@ public class ManageBooks extends javax.swing.JFrame {
                 txt_bookIdFocusLost(evt);
             }
         });
-        jPanel1.add(txt_bookId, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 290, 40));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(220, 240, 244));
         jLabel5.setText("ENTER BOOK ID");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(220, 240, 244));
         jLabel6.setText("TITLE");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, -1, -1));
 
         txt_bookName.setBackground(new java.awt.Color(92, 112, 117));
         txt_bookName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txt_bookName.setForeground(new java.awt.Color(202, 222, 226));
         txt_bookName.setPlaceholder("Enter Book Name");
-        jPanel1.add(txt_bookName, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 290, 40));
 
         txt_authorName.setBackground(new java.awt.Color(92, 112, 117));
         txt_authorName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txt_authorName.setForeground(new java.awt.Color(202, 222, 226));
+        txt_authorName.setToolTipText("");
         txt_authorName.setPlaceholder("Enter Author");
         txt_authorName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -287,23 +293,24 @@ public class ManageBooks extends javax.swing.JFrame {
                 txt_authorNameActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_authorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 290, 40));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(220, 240, 244));
         jLabel7.setText("AUTHOR");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(220, 240, 244));
         jLabel8.setText("QUANTITY");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, -1, -1));
 
         txt_quantity.setBackground(new java.awt.Color(92, 112, 117));
         txt_quantity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txt_quantity.setForeground(new java.awt.Color(202, 222, 226));
         txt_quantity.setPlaceholder("Quantity...");
-        jPanel1.add(txt_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 290, 40));
+        txt_quantity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_quantityActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(95, 179, 200));
         jButton1.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
@@ -319,7 +326,6 @@ public class ManageBooks extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, 90, 40));
 
         jButton2.setBackground(new java.awt.Color(95, 179, 200));
         jButton2.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
@@ -330,7 +336,6 @@ public class ManageBooks extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 510, 90, 40));
 
         jButton3.setBackground(new java.awt.Color(95, 179, 200));
         jButton3.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
@@ -341,7 +346,6 @@ public class ManageBooks extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 510, 90, 40));
 
         jPanel5.setBackground(new java.awt.Color(26, 111, 224));
         jPanel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -368,15 +372,112 @@ public class ManageBooks extends javax.swing.JFrame {
             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 50));
-
         jLabel3.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 34)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(119, 224, 250));
         jLabel3.setText("MANAGE BOOKS");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 260, 40));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(220, 240, 244));
+        jLabel4.setText("ISBN");
+
+        txt_ISBN.setBackground(new java.awt.Color(92, 112, 117));
+        txt_ISBN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_ISBN.setForeground(new java.awt.Color(202, 222, 226));
+        txt_ISBN.setCaretPosition(0);
+        txt_ISBN.setMinimumSize(new java.awt.Dimension(3, 18));
+        txt_ISBN.setPlaceholder("Enter ISBN");
+        txt_ISBN.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_ISBNFocusLost(evt);
+            }
+        });
+        txt_ISBN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_ISBNActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jLabel5))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(txt_bookId, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jLabel6))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(txt_bookName, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jLabel7))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(txt_authorName, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jLabel4))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(txt_ISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jLabel8))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(txt_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel3)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel5)
+                .addGap(8, 8, 8)
+                .addComponent(txt_bookId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel6)
+                .addGap(8, 8, 8)
+                .addComponent(txt_bookName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel7)
+                .addGap(8, 8, 8)
+                .addComponent(txt_authorName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel4)
+                .addGap(8, 8, 8)
+                .addComponent(txt_ISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel8)
+                .addGap(8, 8, 8)
+                .addComponent(txt_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         jPanel3.add(jPanel1);
-        jPanel1.setBounds(0, 0, 560, 728);
+        jPanel1.setBounds(0, 0, 430, 728);
 
         tbl_bookDetails.setBackground(new java.awt.Color(38, 52, 56));
         tbl_bookDetails.setModel(new javax.swing.table.DefaultTableModel(
@@ -384,11 +485,11 @@ public class ManageBooks extends javax.swing.JFrame {
 
             },
             new String [] {
-                "BOOK ID", "TITLE", "AUTHOR", "QUANTITY"
+                "BOOK ID", "TITLE", "AUTHOR", "ISBN", "QUANTITY"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -414,11 +515,13 @@ public class ManageBooks extends javax.swing.JFrame {
         if (tbl_bookDetails.getColumnModel().getColumnCount() > 0) {
             tbl_bookDetails.getColumnModel().getColumn(0).setPreferredWidth(30);
             tbl_bookDetails.getColumnModel().getColumn(1).setPreferredWidth(100);
-            tbl_bookDetails.getColumnModel().getColumn(3).setPreferredWidth(20);
+            tbl_bookDetails.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tbl_bookDetails.getColumnModel().getColumn(3).setPreferredWidth(40);
+            tbl_bookDetails.getColumnModel().getColumn(4).setPreferredWidth(20);
         }
 
         jPanel3.add(jScrollPane1);
-        jScrollPane1.setBounds(600, 120, 640, 360);
+        jScrollPane1.setBounds(470, 120, 770, 360);
 
         jLabel2.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -501,7 +604,8 @@ public class ManageBooks extends javax.swing.JFrame {
         txt_bookId.setText(model.getValueAt(rowNo, 0).toString());
         txt_bookName.setText(model.getValueAt(rowNo, 1).toString());
         txt_authorName.setText(model.getValueAt(rowNo, 2).toString());
-        txt_quantity.setText(model.getValueAt(rowNo, 3).toString());
+        txt_ISBN.setText(model.getValueAt(rowNo, 3).toString());
+        txt_quantity.setText(model.getValueAt(rowNo, 4).toString());
     }//GEN-LAST:event_tbl_bookDetailsMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -562,6 +666,18 @@ public class ManageBooks extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_searchKeyPressed
 
+    private void txt_ISBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ISBNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_ISBNActionPerformed
+
+    private void txt_ISBNFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ISBNFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_ISBNFocusLost
+
+    private void txt_quantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_quantityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_quantityActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -595,6 +711,7 @@ public class ManageBooks extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -607,6 +724,7 @@ public class ManageBooks extends javax.swing.JFrame {
     private rojerusan.RSButtonMetroBeanInfo rSButtonMetroBeanInfo1;
     private rojerusan.RSButtonMetroBeanInfo rSButtonMetroBeanInfo2;
     private rojeru_san.complementos.RSTableMetro tbl_bookDetails;
+    private app.bolivia.swing.JCTextField txt_ISBN;
     private app.bolivia.swing.JCTextField txt_authorName;
     private app.bolivia.swing.JCTextField txt_bookId;
     private app.bolivia.swing.JCTextField txt_bookName;

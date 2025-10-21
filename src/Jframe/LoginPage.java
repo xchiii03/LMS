@@ -46,8 +46,8 @@ public class LoginPage extends javax.swing.JFrame {
         String pwd = txt_password.getText();
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms","root","");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms","root","");
             PreparedStatement pst = con.prepareStatement("select * from users where name = ? and password = ?");
             
             pst.setString(1, name);

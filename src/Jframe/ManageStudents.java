@@ -37,16 +37,16 @@ public class ManageStudents extends javax.swing.JFrame {
     public void setStudentDetailsToTable(){
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms","root","");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms","root","");
             Statement st =  con.createStatement();
             ResultSet rs = st.executeQuery("select * from student_details");
             
             while(rs.next()){
                 int StudentId = rs.getInt("student_id");
-                String StudentName = rs.getString("name");
-                String department = rs.getString("department");
-                String program =  rs.getString("program");
+                String StudentName = rs.getString("student_name");
+                String department = rs.getString("course_name");
+                String program =  rs.getString("branch");
                 
                 Object [] obj = {StudentId,StudentName,department,program};
                 model = (DefaultTableModel)tbl_bookDetails.getModel();
@@ -98,7 +98,7 @@ public class ManageStudents extends javax.swing.JFrame {
         
         try {
             Connection con = DBConnection.getConnection();
-            String sql = "update Student_details set name = ?,department = ?, program = ? where student_id = ?";
+            String sql = "update Student_details set student_name = ?,course_name = ?, branch = ? where student_id = ?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, studentName);
             pst.setString(2, department);
@@ -150,8 +150,8 @@ public class ManageStudents extends javax.swing.JFrame {
     //search
     public void search(String stats) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms", "root", "");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms", "root", "");
             Statement st = con.createStatement();
             String query;
 
@@ -162,18 +162,18 @@ public class ManageStudents extends javax.swing.JFrame {
             // Search by book name, student name, or status
             query = "SELECT * FROM student_details WHERE "
                 + "student_id LIKE '%" + stats + "%' OR "
-                + "name LIKE '%" + stats + "%' OR "
-                + "department LIKE '%" + stats + "%' OR "
-                + "program LIKE '%" + stats + "%'";
+                + "student_name LIKE '%" + stats + "%' OR "
+                + "course_name LIKE '%" + stats + "%' OR "
+                + "branch LIKE '%" + stats + "%'";
 
         }
 
         ResultSet rs = st.executeQuery(query);
         while (rs.next()) {
             String student_id = rs.getString("student_id");
-            String name = rs.getString("name");
-            String department = rs.getString("department");
-            String program = rs.getString("program");
+            String name = rs.getString("student_name");
+            String department = rs.getString("course_name");
+            String program = rs.getString("branch");
             
 
             Object[] obj = {student_id, name, department, program};
@@ -237,7 +237,15 @@ public class ManageStudents extends javax.swing.JFrame {
             new String [] {
                 "STUDENT ID", "NAME", "DEPARTMENT", "PROGRAM"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_bookDetails.setColorBackgoundHead(new java.awt.Color(95, 179, 200));
         tbl_bookDetails.setColorBordeFilas(new java.awt.Color(27, 37, 40));
         tbl_bookDetails.setColorBordeHead(new java.awt.Color(27, 37, 40));

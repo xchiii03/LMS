@@ -32,8 +32,8 @@ public class ViewAllRecords extends javax.swing.JFrame {
 public void setIssueBookDetailsToTable(){
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms","root","");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms","root","");
             Statement st =  con.createStatement();
             ResultSet rs = st.executeQuery("select * from issue_book_details");
             
@@ -62,8 +62,8 @@ public void setIssueBookDetailsToTable(){
     //search
     public void search(String stats) {
     try {
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms", "root", "");
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms", "root", "");
         Statement st = con.createStatement();
         String query;
 
@@ -191,6 +191,11 @@ public void setIssueBookDetailsToTable(){
                 rSButtonHover7MouseClicked(evt);
             }
         });
+        rSButtonHover7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonHover7ActionPerformed(evt);
+            }
+        });
         jPanel2.add(rSButtonHover7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 0, 50, 25));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 160));
@@ -203,7 +208,15 @@ public void setIssueBookDetailsToTable(){
             new String [] {
                 "ID", "BOOK NAME", "STUDENT NAME", "ISSUE DATE", "DUE DATE", "STATUS"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_issueBookDetails.setColorBackgoundHead(new java.awt.Color(95, 179, 200));
         tbl_issueBookDetails.setColorBordeFilas(new java.awt.Color(27, 37, 40));
         tbl_issueBookDetails.setColorBordeHead(new java.awt.Color(27, 37, 40));
@@ -268,6 +281,10 @@ public void setIssueBookDetailsToTable(){
     private void rSButtonHover7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonHover7MouseClicked
         System.exit(0);
     }//GEN-LAST:event_rSButtonHover7MouseClicked
+
+    private void rSButtonHover7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rSButtonHover7ActionPerformed
 
     /**
      * @param args the command line arguments

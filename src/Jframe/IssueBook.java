@@ -40,8 +40,9 @@ public class IssueBook extends javax.swing.JFrame {
             if (rs.next()) {
                 lbl_bookId.setText(rs.getString("book_id"));
                 lbl_bookName.setText(rs.getString("book_name"));
-                lbl_author.setText(rs.getString("author"));
+                lbl_author.setText(rs.getString("author_name"));
                 lbl_quantity.setText(rs.getString("quantity"));
+                lbl_ISBN.setText(rs.getString("ISBN"));
 
             // ✅ Clear error message if valid
                 lbl_bookError.setText("");
@@ -77,9 +78,9 @@ public class IssueBook extends javax.swing.JFrame {
 
             if (rs.next()) {
                 lbl_studentId.setText(rs.getString("student_id"));
-                lbl_studentName.setText(rs.getString("name"));
-                lbl_department.setText(rs.getString("department"));
-                lbl_program.setText(rs.getString("program"));
+                lbl_studentName.setText(rs.getString("student_name"));
+                lbl_department.setText(rs.getString("course_name"));
+                lbl_program.setText(rs.getString("branch"));
 
             // ✅ Clear error message if valid
                 lbl_studentError.setText("");
@@ -106,45 +107,64 @@ public class IssueBook extends javax.swing.JFrame {
  
      
      //insert issued book details
-     public boolean issueBook(){
-         boolean isIssued = false;
-         int bookId = Integer.parseInt(txt_bookId.getText());
-         int studentId = Integer.parseInt(txt_studentId.getText());
-         String bookName = lbl_bookName.getText();
-         String studentName =lbl_studentName.getText();
+    public boolean issueBook(){
+        boolean isIssued = false;
+        int bookId = Integer.parseInt(txt_bookId.getText());
+        int studentId = Integer.parseInt(txt_studentId.getText());
+        String bookName = lbl_bookName.getText();
+        String studentName =lbl_studentName.getText();
          
-         Date uIssueDate = date_issueDate.getDate();
-         Date uDueDate = date_dueDate.getDate();
+        Date uIssueDate = date_issueDate.getDate();
+        Date uDueDate = date_dueDate.getDate();
          
-         Long l1 = uIssueDate.getTime();
-         long l2 = uDueDate.getTime();
+        Long l1 = uIssueDate.getTime();
+        long l2 = uDueDate.getTime();
          
-         java.sql.Date sIssueDate = new java.sql.Date(l1);
-         java.sql.Date sDueDate = new java.sql.Date(l2);
+        java.sql.Date sIssueDate = new java.sql.Date(l1);
+        java.sql.Date sDueDate = new java.sql.Date(l2);
          
-         try{
-             Connection con = DBConnection.getConnection();
-             String sql = "insert into issue_book_details(book_id,book_name,student_id,student_name,issue_date,due_date,status)values(?,?,?,?,?,?,?)";
-             PreparedStatement pst = con.prepareStatement(sql);
-             pst.setInt(1, bookId);
-             pst.setString(2,bookName);
-             pst.setInt(3, studentId);
-             pst.setString(4, studentName);
-             pst.setDate(5, sIssueDate);
-             pst.setDate(6, sDueDate);
-             pst.setString(7, "pending");
+        try{
+            Connection con = DBConnection.getConnection();
+            String sql_issue = "insert into issue_book_details(book_id,book_name,student_id,student_name,issue_date,due_date,status)values(?,?,?,?,?,?,?)";             
+            PreparedStatement pst = con.prepareStatement(sql_issue);
+            pst.setInt(1, bookId);
+            pst.setString(2,bookName);
+            pst.setInt(3, studentId);
+            pst.setString(4, studentName);
+            pst.setDate(5, sIssueDate);
+            pst.setDate(6, sDueDate);
+            pst.setString(7, "pending");
              
-             int rowCount = pst.executeUpdate();
-             if (rowCount > 0){
-                 isIssued = true;
-             }else{
-                 isIssued = false;
+            int rowCount = pst.executeUpdate();
+            if (rowCount > 0){
+                isIssued = true;
+            }else{
+                isIssued = false;
                  
-             }
+            }
              
-         }catch(Exception e){
-             e.printStackTrace();
-         }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+         
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql_borrow = "insert into borrow_details(student_id,deadline)values(?,?)";
+            PreparedStatement pst2 = con.prepareStatement(sql_borrow);
+            pst2.setInt(1, studentId);
+            pst2.setDate(2, sDueDate);
+             
+            int rowCount_Borrow = pst2.executeUpdate();
+            if (rowCount_Borrow > 0) {
+                isIssued = true;
+            }else{
+                isIssued = false;
+            }
+             
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+         
          return isIssued;
      }
      
@@ -244,6 +264,8 @@ public class IssueBook extends javax.swing.JFrame {
         lbl_author = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lbl_bookError = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lbl_ISBN = new javax.swing.JLabel();
         rSButtonHover7 = new rojeru_san.complementos.RSButtonHover();
         jLabel3 = new javax.swing.JLabel();
 
@@ -449,7 +471,7 @@ public class IssueBook extends javax.swing.JFrame {
 
         lbl_quantity.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_quantity.setForeground(new java.awt.Color(202, 222, 226));
-        jPanel1.add(lbl_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 120, 20));
+        jPanel1.add(lbl_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 120, 20));
 
         lbl_bookName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_bookName.setForeground(new java.awt.Color(202, 222, 226));
@@ -462,11 +484,23 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(202, 222, 226));
         jLabel4.setText("QUANTITY:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 70, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 70, 20));
 
         lbl_bookError.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_bookError.setForeground(new java.awt.Color(202, 222, 226));
-        jPanel1.add(lbl_bookError, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 260, 40));
+        jPanel1.add(lbl_bookError, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 260, 40));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(202, 222, 226));
+        jLabel2.setText("ISBN: ");
+        jLabel2.setMaximumSize(new java.awt.Dimension(69, 20));
+        jLabel2.setMinimumSize(new java.awt.Dimension(69, 20));
+        jLabel2.setPreferredSize(new java.awt.Dimension(69, 20));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 70, 20));
+
+        lbl_ISBN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_ISBN.setForeground(new java.awt.Color(202, 222, 226));
+        jPanel1.add(lbl_ISBN, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 120, 20));
 
         jPanel5.add(jPanel1);
         jPanel1.setBounds(860, 90, 390, 528);
@@ -583,6 +617,7 @@ public class IssueBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -595,6 +630,7 @@ public class IssueBook extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel lbl_ISBN;
     private javax.swing.JLabel lbl_author;
     private javax.swing.JLabel lbl_bookError;
     private javax.swing.JLabel lbl_bookId;

@@ -92,6 +92,18 @@ public class ReturnBook extends javax.swing.JFrame {
         }catch(Exception e){
             e.printStackTrace();
         }
+        
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql_borrow = "DELETE FROM borrow_details WHERE student_id = ?";
+            PreparedStatement pst2 = con.prepareStatement(sql_borrow);
+            pst2.setInt(1, studentId);
+            pst2.executeUpdate();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        
         return isReturned;
     }
      
@@ -100,7 +112,7 @@ public class ReturnBook extends javax.swing.JFrame {
          int bookId = Integer.parseInt(txt_bookId.getText());
          try{
              
-             String sql = "update book_details set quantity = quantity = 1 where book_id = ?";
+             String sql = "update book_details set quantity = quantity + 1 where book_id = ?";
              PreparedStatement pst = con.prepareStatement(sql);
              pst.setInt(1, bookId);
              
@@ -175,7 +187,7 @@ public class ReturnBook extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 28)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(220, 240, 244));
-        jLabel1.setText("BOOK DETAILS");
+        jLabel1.setText("ISSUE DETAILS");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, 20));
 
         lbl_issueId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -279,7 +291,7 @@ public class ReturnBook extends javax.swing.JFrame {
                 txt_studentIdFocusLost(evt);
             }
         });
-        jPanel3.add(txt_studentId, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 290, 40));
+        jPanel3.add(txt_studentId, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 300, 40));
 
         txt_bookId.setBackground(new java.awt.Color(92, 112, 117));
         txt_bookId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -295,7 +307,7 @@ public class ReturnBook extends javax.swing.JFrame {
                 txt_bookIdActionPerformed(evt);
             }
         });
-        jPanel3.add(txt_bookId, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 290, 40));
+        jPanel3.add(txt_bookId, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 300, 40));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(220, 240, 244));
@@ -305,7 +317,7 @@ public class ReturnBook extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(95, 179, 200));
         jButton1.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
         jButton1.setForeground(new java.awt.Color(27, 37, 40));
-        jButton1.setText("FIND BOOK");
+        jButton1.setText("FIND ISSUE DETAILS");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -316,7 +328,7 @@ public class ReturnBook extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, 130, 40));
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 190, 40));
 
         jButton2.setBackground(new java.awt.Color(95, 179, 200));
         jButton2.setFont(new java.awt.Font("Franklin Gothic Book", 1, 16)); // NOI18N
@@ -332,7 +344,7 @@ public class ReturnBook extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 150, 50));
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, 150, 50));
 
         jPanel2.add(jPanel3);
         jPanel3.setBounds(0, 0, 440, 728);

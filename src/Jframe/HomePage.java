@@ -13,9 +13,12 @@ import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
 import java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import java.util.Date;
 import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 
 /**
@@ -26,6 +29,9 @@ public class HomePage extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(HomePage.class.getName());
 
+    DefaultTableModel model_deadline;
+    DefaultTableModel model_overdue;
+    
     /**
      * Creates new form HomePage
      */
@@ -33,59 +39,106 @@ public class HomePage extends javax.swing.JFrame {
         initComponents();
         showPieChart();
         setDataToCards();
+        setBorrowDetailsToTable();
+        setOverDueDetailsToTable();
     }
+    
+    
     public void setDataToCards() {
-    try {
-        Connection con = DBConnection.getConnection();
-        Statement st = con.createStatement();
+        try {
+            Connection con = DBConnection.getConnection();
+            Statement st = con.createStatement();
 
-        ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM book_details");
-        if (rs.next()) lbl_noOfBooks.setText(rs.getString(1));
+            ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM book_details");
+            if (rs.next()) lbl_noOfBooks.setText(rs.getString(1));
 
-        rs = st.executeQuery("SELECT COUNT(*) FROM student_details");
-        if (rs.next()) lbl_noOfStudents.setText(rs.getString(1));
+            rs = st.executeQuery("SELECT COUNT(*) FROM student_details");
+            if (rs.next()) lbl_noOfStudents.setText(rs.getString(1));
 
-        rs = st.executeQuery("SELECT COUNT(*) FROM issue_book_details WHERE status = 'pending'");
-        if (rs.next()) lbl_issuedBooks.setText(rs.getString(1));
+            rs = st.executeQuery("SELECT COUNT(*) FROM issue_book_details WHERE status = 'pending'");
+            if (rs.next()) lbl_issuedBooks.setText(rs.getString(1));
 
-    } catch (Exception e) {
-        e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-}
 
     
     public void showPieChart() {
 
-    // create dataset
-    DefaultPieDataset barDataset = new DefaultPieDataset();
+        // create dataset
+        DefaultPieDataset barDataset = new DefaultPieDataset();
 
-    try {
-        Connection con = DBConnection.getConnection();
-        String sql = "SELECT book_name, COUNT(*) AS issue_count FROM issue_book_details GROUP BY book_id";
-        var st = con.createStatement();
-        ResultSet rs = st.executeQuery(sql);
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "SELECT book_name, COUNT(*) AS issue_count FROM issue_book_details GROUP BY book_id";
+            var st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
 
-        while (rs.next()) {
-            barDataset.setValue(rs.getString("book_name"), rs.getDouble("issue_count"));
+            while (rs.next()) {
+                barDataset.setValue(rs.getString("book_name"), rs.getDouble("issue_count"));
+            }
+
+            // ✅ Create the chart
+            JFreeChart piechart = ChartFactory.createPieChart("Book Issue Details", barDataset, true, true, false);
+
+            // ✅ Create panel to display chart
+            PiePlot piePlot = (PiePlot) piechart.getPlot();
+            ChartPanel barChartPanel = new ChartPanel(piechart);
+            panelPieChart.removeAll();
+            panelPieChart.add(barChartPanel, BorderLayout.CENTER);
+            panelPieChart.validate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        // ✅ Create the chart
-        JFreeChart piechart = ChartFactory.createPieChart("Book Issue Details", barDataset, true, true, false);
-
-        // ✅ Create panel to display chart
-        PiePlot piePlot = (PiePlot) piechart.getPlot();
-        ChartPanel barChartPanel = new ChartPanel(piechart);
-        panelPieChart.removeAll();
-        panelPieChart.add(barChartPanel, BorderLayout.CENTER);
-        panelPieChart.validate();
-
-    } catch (Exception e) {
-        e.printStackTrace();
     }
-}
       
     
-
+    public void setBorrowDetailsToTable(){
+        try {
+                Connection con1 = DBConnection.getConnection();
+                Statement st1 =  con1.createStatement();
+                ResultSet rs1 = st1.executeQuery("select * from borrow_details");
+                
+            while(rs1.next()){
+                int student_Id = rs1.getInt("student_id");
+                Date uDueDate = rs1.getDate("deadline");
+                
+                Object [] obj = {student_Id, uDueDate};
+                model_deadline = (DefaultTableModel)Deadline_Table.getModel();
+                model_deadline.addRow(obj);
+            }
+                
+        }catch (Exception e ){
+            e.printStackTrace();
+        }
+    }
+    
+    public void setOverDueDetailsToTable(){
+        try {
+            Connection con2 = DBConnection.getConnection();
+            
+            String sql3 = "SELECT * FROM borrow_details WHERE deadline < CURDATE()";
+            PreparedStatement pst2 =  con2.prepareStatement(sql3);
+            ResultSet rs2 = pst2.executeQuery();
+                
+            while(rs2.next()){
+                int student_Id = rs2.getInt("student_id");
+                Date uDueDate = rs2.getDate("deadline");
+                
+                Object [] obj = {student_Id, uDueDate};
+                model_overdue = (DefaultTableModel)OverDue_Table.getModel();
+                model_overdue.addRow(obj);
+            }
+                
+        }catch (Exception e ){
+            e.printStackTrace();
+        }
+    }
+                
+                
+                
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,6 +149,12 @@ public class HomePage extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel4 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        OverDue_Table = new rojeru_san.complementos.RSTableMetro();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Deadline_Table = new rojeru_san.complementos.RSTableMetro();
         lbl = new javax.swing.JPanel();
         lbl_noOfBooks = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -124,7 +183,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 728));
         setMinimumSize(new java.awt.Dimension(1280, 728));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -134,19 +192,102 @@ public class HomePage extends javax.swing.JFrame {
         jPanel4.setMinimumSize(new java.awt.Dimension(1280, 728));
         jPanel4.setLayout(null);
 
-        lbl.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
+        jLabel8.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 16)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(202, 222, 226));
+        jLabel8.setText("Overdue Students");
+        jPanel4.add(jLabel8);
+        jLabel8.setBounds(910, 400, 150, 19);
+
+        OverDue_Table.setBackground(new java.awt.Color(38, 52, 56));
+        OverDue_Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Student_Id", "Deadline"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        OverDue_Table.setColorBackgoundHead(new java.awt.Color(95, 179, 200));
+        OverDue_Table.setColorBordeFilas(new java.awt.Color(27, 37, 40));
+        OverDue_Table.setColorBordeHead(new java.awt.Color(27, 37, 40));
+        OverDue_Table.setColorFilasBackgound1(new java.awt.Color(220, 240, 244));
+        OverDue_Table.setColorFilasBackgound2(new java.awt.Color(220, 240, 244));
+        OverDue_Table.setColorFilasForeground1(new java.awt.Color(95, 179, 200));
+        OverDue_Table.setColorFilasForeground2(new java.awt.Color(95, 179, 200));
+        OverDue_Table.setColorForegroundHead(new java.awt.Color(27, 37, 40));
+        OverDue_Table.setColorSelBackgound(new java.awt.Color(95, 179, 200));
+        OverDue_Table.setColorSelForeground(new java.awt.Color(220, 240, 244));
+        jScrollPane2.setViewportView(OverDue_Table);
+
+        jPanel4.add(jScrollPane2);
+        jScrollPane2.setBounds(910, 420, 330, 240);
+
+        jLabel6.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(202, 222, 226));
+        jLabel6.setText("Pending Deadlines");
+        jPanel4.add(jLabel6);
+        jLabel6.setBounds(910, 100, 160, 20);
+
+        Deadline_Table.setBackground(new java.awt.Color(38, 52, 56));
+        Deadline_Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Student_Id", "Deadline"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Deadline_Table.setColorBackgoundHead(new java.awt.Color(95, 179, 200));
+        Deadline_Table.setColorBordeFilas(new java.awt.Color(27, 37, 40));
+        Deadline_Table.setColorBordeHead(new java.awt.Color(27, 37, 40));
+        Deadline_Table.setColorFilasBackgound1(new java.awt.Color(220, 240, 244));
+        Deadline_Table.setColorFilasBackgound2(new java.awt.Color(220, 240, 244));
+        Deadline_Table.setColorFilasForeground1(new java.awt.Color(95, 179, 200));
+        Deadline_Table.setColorFilasForeground2(new java.awt.Color(95, 179, 200));
+        Deadline_Table.setColorForegroundHead(new java.awt.Color(27, 37, 40));
+        Deadline_Table.setColorSelBackgound(new java.awt.Color(95, 179, 200));
+        Deadline_Table.setColorSelForeground(new java.awt.Color(220, 240, 244));
+        Deadline_Table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Deadline_TableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(Deadline_Table);
+
+        jPanel4.add(jScrollPane1);
+        jScrollPane1.setBounds(910, 120, 330, 240);
+
+        lbl.setBackground(new java.awt.Color(38, 52, 56));
+        lbl.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(95, 179, 200)));
 
         lbl_noOfBooks.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        lbl_noOfBooks.setForeground(new java.awt.Color(202, 222, 226));
         lbl_noOfBooks.setText("0");
 
         javax.swing.GroupLayout lblLayout = new javax.swing.GroupLayout(lbl);
         lbl.setLayout(lblLayout);
         lblLayout.setHorizontalGroup(
             lblLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(lblLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lblLayout.createSequentialGroup()
+                .addContainerGap(65, Short.MAX_VALUE)
                 .addComponent(lbl_noOfBooks)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addGap(57, 57, 57))
         );
         lblLayout.setVerticalGroup(
             lblLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,9 +299,11 @@ public class HomePage extends javax.swing.JFrame {
         jPanel4.add(lbl);
         lbl.setBounds(360, 100, 150, 90);
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
+        jPanel7.setBackground(new java.awt.Color(38, 52, 56));
+        jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(95, 179, 200)));
 
         lbl_noOfStudents.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        lbl_noOfStudents.setForeground(new java.awt.Color(202, 222, 226));
         lbl_noOfStudents.setText("0");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -168,9 +311,9 @@ public class HomePage extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(60, 60, 60)
                 .addComponent(lbl_noOfStudents)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,9 +325,11 @@ public class HomePage extends javax.swing.JFrame {
         jPanel4.add(jPanel7);
         jPanel7.setBounds(540, 100, 150, 90);
 
-        jPanel11.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(76, 100, 107)));
+        jPanel11.setBackground(new java.awt.Color(38, 52, 56));
+        jPanel11.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(95, 179, 200)));
 
         lbl_issuedBooks.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        lbl_issuedBooks.setForeground(new java.awt.Color(202, 222, 226));
         lbl_issuedBooks.setText("0");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -192,9 +337,9 @@ public class HomePage extends javax.swing.JFrame {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(59, 59, 59)
                 .addComponent(lbl_issuedBooks)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +371,7 @@ public class HomePage extends javax.swing.JFrame {
 
         panelPieChart.setLayout(new java.awt.BorderLayout());
         jPanel4.add(panelPieChart);
-        panelPieChart.setBounds(360, 220, 490, 410);
+        panelPieChart.setBounds(360, 220, 510, 440);
 
         jLabel4.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(220, 240, 244));
@@ -435,7 +580,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel1.setMinimumSize(new java.awt.Dimension(1280, 728));
         jLabel1.setPreferredSize(new java.awt.Dimension(1280, 728));
         jPanel4.add(jLabel1);
-        jLabel1.setBounds(30, -10, 1290, 860);
+        jLabel1.setBounds(0, 0, 1290, 850);
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 728));
 
@@ -514,6 +659,10 @@ public class HomePage extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_rSButtonHover7MouseClicked
 
+    private void Deadline_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Deadline_TableMouseClicked
+        
+    }//GEN-LAST:event_Deadline_TableMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -540,6 +689,8 @@ public class HomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojeru_san.complementos.RSTableMetro Deadline_Table;
+    private rojeru_san.complementos.RSTableMetro OverDue_Table;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -549,12 +700,16 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel lbl;
     private javax.swing.JLabel lbl_issuedBooks;
     private javax.swing.JLabel lbl_noOfBooks;
